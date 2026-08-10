@@ -3,247 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học Toán Lớp 2 - Tập 1 (Kết Nối Tri Thức)</title>
-    <!-- FontAwesome icons -->
+    <title>Toán Lớp 2 - Tập 1</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-color: #f3f4f6;
+            --bg-page: #f0fdf4;
+            --main-border: #86efac;
             --card-bg: #ffffff;
-            --text-color: #1f2937;
-            --border-radius: 12px;
+            --text-color: #1e293b;
+            --primary-orange: #ff7675;
+            --primary-blue: #74b9ff;
+            --primary-purple: #a29bfe;
+            --primary-green: #55efc4;
+            --primary-yellow: #ffeaa7;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-page);
             color: var(--text-color);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Sidebar Navigation */
-        #sidebar {
-            width: 320px;
-            background-color: var(--card-bg);
-            border-right: 1px solid #e5e7eb;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .sidebar-header {
             padding: 20px;
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-        }
-
-        .sidebar-header p {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        .topic-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
-
-        .topic-group {
-            margin-bottom: 15px;
-        }
-
-        .topic-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #6b7280;
-            padding: 8px 10px;
-            text-transform: uppercase;
-        }
-
-        .lesson-item {
-            padding: 10px 14px;
-            margin: 3px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        .lesson-item:hover {
-            background-color: #e0e7ff;
-            color: var(--primary-color);
-        }
-
-        .lesson-item.active {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 600;
-        }
-
-        /* Main Content Area */
-        #main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow-y: auto;
-            padding: 30px;
-        }
-
-        .lesson-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            margin: 0 auto;
+        /* App Container với viền bo tròn lớn giống Âm Nhạc 2 */
+        .app-container {
             width: 100%;
+            max-width: 1000px;
+            background: #fffef0;
+            border: 8px solid var(--main-border);
+            border-radius: 36px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
         }
 
-        .lesson-header {
-            border-bottom: 2px solid #f3f4f6;
-            padding-bottom: 15px;
+        /* Top Header */
+        .header-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #2d3436;
             margin-bottom: 20px;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-grade {
+            background: #ff7675;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 4px 0 #d63031;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: #ffffff;
+            border: 3px solid #6c5ce7;
+            border-radius: 24px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 0 #a29bfe;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid #6c5ce7;
+            object-fit: cover;
+        }
+
+        .user-details h3 {
+            font-size: 1.1rem;
+            color: #2d3436;
+            font-weight: 800;
+        }
+
+        .user-details p {
+            font-size: 0.85rem;
+            color: #636e72;
+            font-weight: 700;
+        }
+
+        .score-badge {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 900;
+            color: #d63031;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 0 #fdcb6e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Navigation Modes */
+        .nav-modes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .mode-btn {
+            border: none;
+            padding: 12px;
+            border-radius: 18px;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.1s;
+        }
+
+        .mode-btn:active { transform: translateY(3px); }
+        .mode-play { background: #ff7675; box-shadow: 0 4px 0 #d63031; }
+        .mode-learn { background: #74b9ff; box-shadow: 0 4px 0 #0984e3; }
+        .mode-practice { background: #a29bfe; box-shadow: 0 4px 0 #6c5ce7; }
+        .mode-challenge { background: #00b894; box-shadow: 0 4px 0 #00b894; }
+
+        /* Layer 1: Lưới Chủ Đề */
+        .section-heading {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .topic-card {
+            background: #e8f8f5;
+            border: 3px solid #55efc4;
+            border-radius: 22px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 0 #00b894;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #00b894;
+        }
+
+        .topic-icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .topic-card h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #2d3436;
+        }
+
+        .topic-card p {
+            font-size: 0.85rem;
+            color: #636e72;
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        /* Layer 2: Chi tiết Bài Học & Nội Dung */
+        .layer-view {
+            display: none;
+        }
+
+        .btn-back {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-weight: 800;
+            color: #d63031;
+            cursor: pointer;
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lesson-select-box {
+            margin-bottom: 20px;
+        }
+
+        .lesson-select-box select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 16px;
+            border: 3px solid #74b9ff;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #2d3436;
+            background: white;
+            outline: none;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: white;
+            border: 3px solid #74b9ff;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 5px 0 #0984e3;
+        }
+
+        .content-header {
+            display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .lesson-header h1 {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-        }
-
-        /* Controls for Voice */
-        .audio-controls {
-            display: flex;
-            gap: 10px;
+            border-bottom: 2px dashed #dfe6e9;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .btn-audio {
-            background-color: #10b981;
+            background: #00b894;
             color: white;
             border: none;
             padding: 8px 16px;
             border-radius: 20px;
+            font-weight: 800;
             cursor: pointer;
-            font-weight: 600;
+            box-shadow: 0 3px 0 #008f68;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s;
-        }
-
-        .btn-audio:hover {
-            background-color: #059669;
+            gap: 6px;
         }
 
         .btn-audio.stop {
-            background-color: #ef4444;
+            background: #ff7675;
+            box-shadow: 0 3px 0 #d63031;
         }
 
-        .btn-audio.stop:hover {
-            background-color: #dc2626;
+        .box-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 14px;
+            border-left: 5px solid #74b9ff;
         }
 
-        /* Content Sections */
-        .section {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            color: #374151;
-            margin-bottom: 10px;
+        .box-title {
+            font-weight: 800;
+            color: #2d3436;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .section-title i {
-            color: var(--primary-color);
-        }
-
-        .section-body {
-            background-color: #f9fafb;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-            line-height: 1.6;
-            white-space: pre-line;
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div class="sidebar-header">
-            <h2>Toán Lớp 2 - Tập 1</h2>
-            <p>Kết nối tri thức với cuộc sống</p>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header-title">
+            <button class="btn-grade"><i class="fa-solid fa-house"></i> Grade-2</button>
+            <span>📐 TOÁN 2 ✏️</span>
         </div>
-        <div class="topic-list" id="topic-container">
-            <!-- Danh sách bài học sẽ được render bằng JS -->
-        </div>
-    </div>
 
-    <!-- Main Content -->
-    <div id="main-content">
-        <div class="lesson-card">
-            <div class="lesson-header">
-                <h1 id="lesson-title">Vui lòng chọn bài học</h1>
-                <div class="audio-controls">
+        <!-- Student Profile Card -->
+        <div class="profile-card">
+            <div class="user-info">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=BinhAn" alt="Avatar" class="avatar">
+                <div class="user-details">
+                    <h3>Bé Phan Ngọc Bình An</h3>
+                    <p>Lớp 2A • SGK Kết nối tri thức</p>
+                </div>
+            </div>
+            <div class="score-badge">
+                <i class="fa-solid fa-star"></i> 150 điểm
+            </div>
+        </div>
+
+        <!-- Mode Navigation -->
+        <div class="nav-modes">
+            <button class="mode-btn mode-play"><i class="fa-solid fa-gamepad"></i> CHƠI</button>
+            <button class="mode-btn mode-learn"><i class="fa-solid fa-book-open"></i> HỌC</button>
+            <button class="mode-btn mode-practice"><i class="fa-solid fa-pen-to-square"></i> ÔN TẬP</button>
+            <button class="mode-btn mode-challenge"><i class="fa-solid fa-trophy"></i> THỬ THÁCH</button>
+        </div>
+
+        <!-- LAYER 1: Danh sách Chủ đề -->
+        <div id="layer-topics">
+            <div class="section-heading">🌳 VƯỜN TOÁN HỌC - 7 CHỦ ĐỀ SGK</div>
+            <div class="topic-grid" id="topic-grid-container">
+                <!-- JS sẽ render 7 ô Chủ đề tại đây -->
+            </div>
+        </div>
+
+        <!-- LAYER 2: Chi tiết Bài học -->
+        <div id="layer-lessons" class="layer-view">
+            <button class="btn-back" onclick="showTopicsLayer()">
+                <i class="fa-solid fa-arrow-left"></i> Quay lại Vườn Toán
+            </button>
+            
+            <div class="lesson-select-box">
+                <select id="lesson-dropdown" onchange="onLessonSelectChange(this.value)">
+                    <!-- JS sẽ điền danh sách bài học thuộc chủ đề được chọn -->
+                </select>
+            </div>
+
+            <div class="content-card">
+                <div class="content-header">
+                    <h2 id="lesson-title-display" style="font-size: 1.3rem; font-weight: 800; color: #6c5ce7;">Bài học</h2>
                     <button id="btn-read" class="btn-audio" onclick="toggleReadTheory()">
                         <i class="fa-solid fa-volume-high"></i> Đọc Lý Thuyết
                     </button>
                 </div>
-            </div>
 
-            <!-- Lý thuyết -->
-            <div class="section">
-                <h3 class="section-title"><i class="fa-solid fa-book-open"></i> Lý Thuyết</h3>
-                <div class="section-body" id="theory-content">
-                    Chọn một bài học từ danh sách bên trái để xem nội dung lý thuyết.
+                <div class="box-section" style="border-left-color: #74b9ff;">
+                    <div class="box-title"><i class="fa-solid fa-book" style="color: #74b9ff;"></i> Lý Thuyết</div>
+                    <div id="theory-display" style="white-space: pre-line;"></div>
                 </div>
-            </div>
 
-            <!-- Luyện tập / Bài tập -->
-            <div class="section">
-                <h3 class="section-title"><i class="fa-solid fa-pen-to-square"></i> Luyện Tập (Bài Tập)</h3>
-                <div class="section-body" id="practice-content">
-                    Chưa có bài tập nào được chọn.
+                <div class="box-section" style="border-left-color: #a29bfe;">
+                    <div class="box-title"><i class="fa-solid fa-pen" style="color: #a29bfe;"></i> Luyện Tập (Bài Tập)</div>
+                    <div id="practice-display" style="white-space: pre-line;"></div>
                 </div>
-            </div>
 
-            <!-- Trò chơi -->
-            <div class="section">
-                <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> Trò Chơi Học Tập</h3>
-                <div class="section-body" id="game-content">
-                    Chưa có trò chơi nào được chọn.
+                <div class="box-section" style="border-left-color: #ff7675;">
+                    <div class="box-title"><i class="fa-solid fa-gamepad" style="color: #ff7675;"></i> Trò Chơi Học Tập</div>
+                    <div id="game-display" style="white-space: pre-line;"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Nhúng file JS khớp với tên file trên GitHub -->
+    <!-- Nhúng đúng tên file JS trên GitHub -->
     <script src="math2-volume1.js"></script>
 </body>
 </html>
