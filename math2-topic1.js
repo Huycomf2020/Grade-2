@@ -26,7 +26,8 @@ const topic1Lessons = [
    {
         id: 2,
         title: "Bài 2: Tia số. Số liền trước, số liền sau",
-        theory: 'Tia số có vạch đầu tiên là số 0, là số bé nhất. Trên tia số, mỗi số lớn hơn các số bên trái và bé hơn các số bên phải nó. Số liền trước của 4 là 3; số liền sau của 4 là 5.<br><div style="text-align: center; margin-top: 12px;"><img src="https://i.ibb.co/1JQ68DC1/tia-so.png" alt="Tia số" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>',
+        theory: "Tia số có vạch đầu tiên là số 0, là số bé nhất. Trên tia số, mỗi số lớn hơn các số bên trái và bé hơn các số bên phải nó. Số liền trước của 4 là 3; số liền sau của 4 là 5.",
+        image: "https://i.ibb.co/1JQ68DC1/tia-so.png",
         practice: [
             { type: "Dạng 1: Điền vạch tia số", text: "Số đứng ngay sau số 12 trên tia số là số nào?", options: ["13", "11"], correct: 0 },
             { type: "Dạng 2: Đúng/Sai số liền trước, liền sau", text: "Số liền trước của 16 là 15, đúng hay sai?", options: ["Đúng", "Sai"], correct: 0 },
@@ -35,13 +36,14 @@ const topic1Lessons = [
         game: {
             title: "🎈 Trò chơi: Móc bóng bay vào tia số",
             image: "https://i.ibb.co/fY0HNMMd/tia-bong.png",
-            question: 'Quả bóng mang phép tính (10 + 7) nối với vạch số mấy trên tia số?<br><div style="text-align: center; margin: 12px 0;"><img src="https://i.ibb.co/fY0HNMMd/tia-bong.png" alt="Móc bóng bay vào tia số" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>',
+            question: "Quả bóng mang phép tính (10 + 7) nối với vạch số mấy trên tia số?",
             options: ["Vạch số 17", "Vạch số 10", "Vạch số 7"],
             correct: 0
         },
         challenge: {
             title: "🐢 Thử thách: Cuộc đua của các chú Thỏ",
-            question: 'Thỏ trắng chạy ở làn liền trước làn số 4. Thỏ trắng chạy ở làn số mấy?<br><div style="text-align: center; margin: 12px 0;"><img src="https://i.ibb.co/xqJ9W5Rx/tia-tho.png" alt="Cuộc đua của các chú Thỏ" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>',
+            image: "https://i.ibb.co/xqJ9W5Rx/tia-tho.png",
+            question: "Thỏ trắng chạy ở làn liền trước làn số 4. Thỏ trắng chạy ở làn số mấy?",
             options: ["Làn số 3", "Làn số 5"],
             correct: 0
         }
