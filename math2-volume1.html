@@ -51,6 +51,39 @@
             border-bottom: 5px solid #E84393;
         }
 
+        /* Nút Trang chủ (Homepage) góc trái */
+        .home-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #FFFFFF;
+            color: #D63031;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 0 #BDC3C7;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .home-btn:hover {
+            background: #FFEAA7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #E1B12C;
+        }
+
+        .home-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #E1B12C;
+        }
+
         header h1 { 
             margin: 0; 
             font-size: 30px; 
@@ -67,6 +100,7 @@
             border-radius: 20px; 
         }
 
+        /* Bảng điểm góc phải */
         .score-badge {
             position: absolute;
             top: 15px;
@@ -250,6 +284,7 @@
 
         @media (max-width: 600px) {
             .options-grid { grid-template-columns: 1fr; }
+            .home-btn { position: relative; top: 0; left: 0; margin: 0 auto 10px auto; width: fit-content; }
             .score-badge { position: relative; top: 0; right: 0; margin: 10px auto 0 auto; width: fit-content; }
         }
     </style>
@@ -258,8 +293,12 @@
 
 <div class="math2-app">
     <header>
+        <!-- Nút Trở về Trang chủ -->
+        <a href="index.html" class="home-btn" id="goHomeBtn">🏠 Trang Chủ</a>
+
         <h1>🎈 TOÁN LỚP 2 - TẬP 1 🐻</h1>
         <p>Kết Nối Tri Thức Với Cuộc Sống</p>
+        
         <div class="score-badge">⭐ <span id="userScore">0</span></div>
     </header>
 
