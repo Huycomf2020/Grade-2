@@ -6,7 +6,7 @@
     <title>Học Toán Lớp 2 - Tập 1 (Kết Nối Tri Thức)</title>
     <style>
         :root {
-            --primary: #4a90e2;
+            --primary: #3b82f6;
             --secondary: #ff6b6b;
             --accent: #f5a623;
             --bg: #f4f7f6;
@@ -34,7 +34,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), #357abd);
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
             color: white;
             padding: 20px;
             text-align: center;
@@ -43,19 +43,21 @@
         header h1 { margin: 0 0 5px 0; font-size: 26px; }
         header p { margin: 0; opacity: 0.9; font-size: 14px; }
 
-        /* Topic Menu */
+        /* Topic Nav Bar */
         .topic-nav {
             display: flex;
-            background: #eef2f5;
+            background: #e2e8f0;
             overflow-x: auto;
-            padding: 10px;
+            padding: 12px;
             gap: 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #cbd5e1;
+            min-height: 55px;
+            align-items: center;
         }
 
         .topic-btn {
             background: white;
-            border: 1px solid #ccc;
+            border: 1px solid #94a3b8;
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
@@ -63,16 +65,17 @@
             font-weight: bold;
             font-size: 14px;
             color: var(--text);
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .topic-btn.active, .topic-btn:hover {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
+            transform: translateY(-1px);
         }
 
-        /* Tabs inside Topic */
+        /* Section Tabs */
         .section-tabs {
             display: flex;
             justify-content: center;
@@ -81,18 +84,22 @@
         }
 
         .tab-btn {
-            background: #f1f1f1;
-            border: none;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 15px;
             font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
             background: var(--secondary);
             color: white;
+            border-color: var(--secondary);
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
         }
 
         .tab-content {
@@ -104,30 +111,28 @@
             display: block;
         }
 
-        /* Theory Styles */
+        /* Content Modules */
         .theory-box {
-            background: #eef9ff;
+            background: #eff6ff;
             border-left: 5px solid var(--primary);
-            padding: 15px 20px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            padding: 18px 20px;
+            border-radius: 8px;
+            line-height: 1.6;
         }
 
         .theory-box h3 { margin-top: 0; color: var(--primary); }
 
-        /* Quiz Styles */
         .quiz-card {
-            background: #fafafa;
-            border: 1px solid #eee;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 20px;
-            margin-top: 10px;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
             margin-top: 15px;
         }
 
@@ -139,17 +144,19 @@
             cursor: pointer;
             font-size: 15px;
             text-align: left;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
-        .option-btn:hover { background: #e2e8f0; }
+        .option-btn:hover { 
+            background: #e2e8f0; 
+            border-color: var(--primary);
+        }
 
-        /* Game Canvas / Area */
         .game-box {
             text-align: center;
-            background: #fff8e7;
+            background: #fffbeeb3;
             border: 2px dashed var(--accent);
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
         }
 
@@ -159,8 +166,8 @@
             font-size: 16px;
             min-height: 24px;
         }
-        .correct { color: #27ae60; }
-        .wrong { color: #e74c3c; }
+        .correct { color: #16a34a; }
+        .wrong { color: #dc2626; }
     </style>
 </head>
 <body>
@@ -171,24 +178,22 @@
         <p>Sách giáo khoa Kết nối tri thức với cuộc sống</p>
     </header>
 
-    <!-- Thanh chọn Chủ đề -->
+    <!-- Thanh danh sách chủ đề -->
     <div class="topic-nav" id="m2TopicNav"></div>
 
-    <!-- Thanh chuyển phần học (Lý thuyết / Thực hành / Trò chơi) -->
+    <!-- Thanh chuyển Tab học tập -->
     <div class="section-tabs">
-        <button class="tab-btn active" onclick="switchTab('theory')">📖 Lý Thuyết</button>
-        <button class="tab-btn" onclick="switchTab('practice')">✍️ Luyện Tập</button>
-        <button class="tab-btn" onclick="switchTab('game')">🎮 Trò Chơi Ôn Tập</button>
+        <button class="tab-btn active" data-tab="theory">📖 Lý Thuyết</button>
+        <button class="tab-btn" data-tab="practice">✍️ Luyện Tập</button>
+        <button class="tab-btn" data-tab="game">🎮 Trò Chơi Ôn Tập</button>
     </div>
 
-    <!-- Nội dung 1: Lý Thuyết -->
+    <!-- Nội dung Tab 1: Lý Thuyết -->
     <div id="tab-theory" class="tab-content active">
-        <div class="theory-box" id="theoryContent">
-            <!-- Render từ JS -->
-        </div>
+        <div class="theory-box" id="theoryContent">Đang tải lý thuyết...</div>
     </div>
 
-    <!-- Nội dung 2: Luyện Tập (Bài tập chuẩn SGK) -->
+    <!-- Nội dung Tab 2: Luyện Tập -->
     <div id="tab-practice" class="tab-content">
         <div class="quiz-card">
             <div id="practiceQuestion" style="font-size: 18px; font-weight: bold;"></div>
@@ -197,11 +202,9 @@
         </div>
     </div>
 
-    <!-- Nội dung 3: Trò Chơi Ôn Tập -->
+    <!-- Nội dung Tab 3: Trò Chơi -->
     <div id="tab-game" class="tab-content">
-        <div class="game-box" id="gameArea">
-            <!-- Game tương tác nhỏ -->
-        </div>
+        <div class="game-box" id="gameArea">Đang tải trò chơi...</div>
     </div>
 </div>
 
