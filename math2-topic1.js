@@ -81,12 +81,14 @@ const topic1Lessons = [
         ],
         game: {
             title: "⛵ Trò chơi: Gấp thuyền so tài",
+            image: "https://i.ibb.co/5WhFXgYP/gapthuyen.png",
             question: "Mai gấp được 8 cái thuyền, Nam gấp được 5 cái. Mai gấp hơn Nam mấy cái?",
             options: ["3 cái thuyền", "2 cái thuyền"],
             correct: 0
         },
         challenge: {
             title: "🤖 Thử thách: Chiều cao Rô-bốt",
+            image: "https://i.ibb.co/C32t71Hr/robot-A-B.png",
             question: "Rô-bốt A cao 56 cm, Rô-bốt B cao 54 cm. Rô-bốt A cao hơn Rô-bốt B bao nhiêu cm?",
             options: ["2 cm", "3 cm"],
             correct: 0
@@ -103,12 +105,14 @@ const topic1Lessons = [
         ],
         game: {
             title: "☂️ Trò chơi: Ô che nắng biển xanh",
+            image: "https://i.ibb.co/wrJLwjWC/o-hon-50.png",
             question: "Chiếc ô nào có kết quả phép tính lớn hơn 50?",
-            options: ["30 + 40 (= 70)", "70 - 30 (= 40)"],
+            options: ["Ô hồng. Ô xanh. Ô vàng", "Ô xanh. Ô đỏ. Ô tím"],
             correct: 0
         },
         challenge: {
             title: "⛵ Thử thách: Hành khách trên thuyền",
+            image: "https://i.ibb.co/WWHtbdbZ/thuyen.png", 
             question: "Trên thuyền có 12 người, thêm 3 người lên thuyền. Hỏi có tất cả bao nhiêu người?",
             options: ["15 người (12 + 3 = 15)", "14 người"],
             correct: 0
