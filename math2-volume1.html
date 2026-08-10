@@ -37,7 +37,7 @@
             min-height: 100vh;
         }
 
-        /* App Container với viền bo tròn lớn giống Âm Nhạc 2 */
+        /* App Container */
         .app-container {
             width: 100%;
             max-width: 1000px;
@@ -72,9 +72,10 @@
             box-shadow: 0 4px 0 #d63031;
             border: none;
             cursor: pointer;
+            text-decoration: none;
         }
 
-        /* Profile Card */
+        /* Student Profile Card */
         .profile-card {
             background: #ffffff;
             border: 3px solid #6c5ce7;
@@ -154,9 +155,9 @@
         .mode-play { background: #ff7675; box-shadow: 0 4px 0 #d63031; }
         .mode-learn { background: #74b9ff; box-shadow: 0 4px 0 #0984e3; }
         .mode-practice { background: #a29bfe; box-shadow: 0 4px 0 #6c5ce7; }
-        .mode-challenge { background: #00b894; box-shadow: 0 4px 0 #00b894; }
+        .mode-challenge { background: #00b894; box-shadow: 0 4px 0 #008f68; }
 
-        /* Layer 1: Lưới Chủ Đề */
+        /* LAYER 1: Lưới Chủ Đề */
         .section-heading {
             text-align: center;
             font-size: 1.3rem;
@@ -206,7 +207,7 @@
             font-weight: 700;
         }
 
-        /* Layer 2: Chi tiết Bài Học & Nội Dung */
+        /* LAYER 2: Chi tiết Bài Học & Nội Dung */
         .layer-view {
             display: none;
         }
@@ -305,10 +306,10 @@
             <span>📐 TOÁN 2 ✏️</span>
         </div>
 
-        <!-- Student Profile Card -->
+        <!-- Student Profile Card (Đã đổi avatar thành binhan.png) -->
         <div class="profile-card">
             <div class="user-info">
-                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=BinhAn" alt="Avatar" class="avatar">
+                <img src="binhan.png" alt="Bình An" class="avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=BinhAn'">
                 <div class="user-details">
                     <h3>Bé Phan Ngọc Bình An</h3>
                     <p>Lớp 2A • SGK Kết nối tri thức</p>
@@ -319,19 +320,19 @@
             </div>
         </div>
 
-        <!-- Mode Navigation -->
+        <!-- Navigation Modes -->
         <div class="nav-modes">
-            <button class="mode-btn mode-play"><i class="fa-solid fa-gamepad"></i> CHƠI</button>
-            <button class="mode-btn mode-learn"><i class="fa-solid fa-book-open"></i> HỌC</button>
-            <button class="mode-btn mode-practice"><i class="fa-solid fa-pen-to-square"></i> ÔN TẬP</button>
-            <button class="mode-btn mode-challenge"><i class="fa-solid fa-trophy"></i> THỬ THÁCH</button>
+            <button class="mode-btn mode-play" onclick="showTopicsLayer()"><i class="fa-solid fa-gamepad"></i> CHƠI</button>
+            <button class="mode-btn mode-learn" onclick="showTopicsLayer()"><i class="fa-solid fa-book-open"></i> HỌC</button>
+            <button class="mode-btn mode-practice" onclick="showTopicsLayer()"><i class="fa-solid fa-pen-to-square"></i> ÔN TẬP</button>
+            <button class="mode-btn mode-challenge" onclick="showTopicsLayer()"><i class="fa-solid fa-trophy"></i> THỬ THÁCH</button>
         </div>
 
         <!-- LAYER 1: Danh sách Chủ đề -->
         <div id="layer-topics">
             <div class="section-heading">🌳 VƯỜN TOÁN HỌC - 7 CHỦ ĐỀ SGK</div>
             <div class="topic-grid" id="topic-grid-container">
-                <!-- JS sẽ render 7 ô Chủ đề tại đây -->
+                <!-- Danh sách 7 chủ đề sẽ được khởi tạo tại đây -->
             </div>
         </div>
 
@@ -343,7 +344,6 @@
             
             <div class="lesson-select-box">
                 <select id="lesson-dropdown" onchange="onLessonSelectChange(this.value)">
-                    <!-- JS sẽ điền danh sách bài học thuộc chủ đề được chọn -->
                 </select>
             </div>
 
@@ -373,7 +373,7 @@
         </div>
     </div>
 
-    <!-- Nhúng đúng tên file JS trên GitHub -->
+    <!-- Nhúng file JS -->
     <script src="math2-volume1.js"></script>
 </body>
 </html>
