@@ -16,8 +16,8 @@
             const gain = this.ctx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(523.25, now); // C5 (Ting)
-            osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5 (Ting!)
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
 
             gain.gain.setValueAtTime(0.3, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
