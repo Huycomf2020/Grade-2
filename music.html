@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 ÂM NHẠC 2 - Bé Phan Ngọc Bình An</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #E8F5E9;
+            --card-bg: #FFFFFF;
+            --accent-green: #4CAF50;
+            --accent-orange: #FF9800;
+            --accent-blue: #2196F3;
+            --accent-pink: #E91E63;
+            --accent-purple: #AB47BC;
+            --text-color: #2C3E50;
+        }
+
+        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0; padding: 15px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+
+        #app-container {
+            width: 100%; max-width: 900px;
+            background: #FFFDE7; border: 8px solid #81C784;
+            border-radius: 35px; padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* NAVBAR HEADER */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-home {
+            background: #FF7043;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 1rem;
+            box-shadow: 0 4px 0 #E64A19;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.1s;
+        }
+
+        .btn-home:active { transform: translateY(3px); box-shadow: none; }
+
+        .header-title { text-align: center; font-size: 2rem; color: #2E7D32; margin: 0; }
+
+        .user-dashboard {
+            background: #FFFFFF; border-radius: 25px; padding: 12px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 6px 0 #A5D6A7; margin-bottom: 20px; border: 3px solid #66BB6A;
+        }
+
+        .user-info { display: flex; align-items: center; gap: 12px; font-size: 1.2rem; font-weight: 900; color: #1B5E20; }
+        .avatar { font-size: 2.5rem; background: #E8F5E9; border-radius: 50%; padding: 5px; border: 3px solid #81C784; }
+
+        .score-badge {
+            background: #FFF3E0; border: 3px solid #FFB74D; padding: 8px 18px;
+            border-radius: 20px; font-size: 1.3rem; color: #E65100; font-weight: 900;
+        }
+
+        .mode-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+
+        .btn-mode {
+            padding: 12px 5px; font-size: 1.1rem; font-weight: 900; border: none;
+            border-radius: 18px; cursor: pointer; box-shadow: 0 5px 0 rgba(0,0,0,0.15); color: white;
+        }
+
+        .mode-play { background: #FF7043; }
+        .mode-learn { background: #42A5F5; }
+        .mode-show { background: #AB47BC; }
+        .mode-challenge { background: #26A69A; }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        .section-title { text-align: center; font-size: 1.5rem; color: #388E3C; margin-bottom: 15px; font-weight: 900; }
+
+        .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+        .theme-card {
+            background: white; border-radius: 25px; padding: 15px; text-align: center;
+            border: 4px solid #AED581; box-shadow: 0 8px 0 #C5E1A5; cursor: pointer;
+        }
+
+        .theme-card.featured { grid-column: span 2; background: #F1F8E9; border-color: #7CB342; }
+
+        .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+        .btn-subworld {
+            background: white; border: 3px solid #81D4FA; border-radius: 20px;
+            padding: 15px 10px; font-size: 1.05rem; font-weight: 900; color: #0277BD;
+            box-shadow: 0 6px 0 #B3E5FC; cursor: pointer; display: flex; align-items: center; gap: 10px;
+            text-align: left;
+        }
+
+        .big-btn {
+            width: 100%; padding: 15px; font-size: 1.2rem; font-weight: 900;
+            border-radius: 22px; border: none; box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+            cursor: pointer; margin-top: 10px; color: white;
+        }
+
+        .btn-green { background: #66BB6A; }
+        .btn-orange { background: #FFA726; }
+        .btn-pink { background: #EC407A; }
+        .btn-purple { background: #AB47BC; }
+
+        .game-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75); display: none;
+            justify-content: center; align-items: center; z-index: 100;
+        }
+
+        .game-overlay.active { display: flex; }
+
+        .game-box {
+            background: #FFFDE7; width: 92%; max-width: 650px; max-height: 90vh;
+            overflow-y: auto; border-radius: 30px; border: 6px solid #FFB74D;
+            padding: 20px; text-align: center; position: relative;
+        }
+
+        .close-btn { position: absolute; top: 10px; right: 18px; font-size: 2.2rem; cursor: pointer; color: #E65100; font-weight: 900; }
+
+        .rec-status {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 1.1rem; font-weight: 800; color: #E53935; margin: 8px 0;
+        }
+
+        .rec-dot { width: 14px; height: 14px; background: #E53935; border-radius: 50%; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
+
+        .btn-back { background: #78909C; color: white; border: none; padding: 8px 18px; border-radius: 15px; font-weight: 900; cursor: pointer; margin-bottom: 10px; }
+        .tab-btn { padding: 8px 12px; font-size: 0.95rem; font-weight: 800; border-radius: 12px; border: 2px solid #81C784; background: white; cursor: pointer; }
+        .tab-btn.active { background: #81C784; color: white; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <!-- TOP NAVIGATION BAR -->
+    <div class="top-bar">
+        <a href="index.html" class="btn-home" onclick="speak('Trở về Trang chủ')">🏠 Grade-2</a>
+        <h1 class="header-title">🎵 ÂM NHẠC 2 🎵</h1>
+        <div style="width: 100px;"></div> <!-- Placeholder cân bằng layout -->
+    </div>
+    
+    <!-- DASHBOARD BÉ BÌNH AN -->
+    <div class="user-dashboard">
+        <div class="user-info">
+            <span class="avatar">👧</span>
+            <div>
+                <div>Bé Phan Ngọc Bình An</div>
+                <div style="font-size: 0.85rem; color: #558B2F; font-weight: 700;">Lớp 2A • SGK Kết nối tri thức</div>
+            </div>
+        </div>
+        <div class="score-badge">⭐ <span id="user-score">125</span> điểm</div>
+    </div>
+
+    <!-- MAIN MODES -->
+    <div class="mode-selector">
+        <button class="btn-mode mode-play" onclick="switchView('map-view')">🎮 CHƠI</button>
+        <button class="btn-mode mode-learn" onclick="speak('Bé đang ở Chế độ Học SGK Âm Nhạc 2')">📚 HỌC</button>
+        <button class="btn-mode mode-show" onclick="openKaraokeShow()">🎤 BIỂU DIỄN</button>
+        <button class="btn-mode mode-challenge" onclick="openChallenge()">🏆 THỬ THÁCH</button>
+    </div>
+
+    <!-- VIEW 1: MAP 8 CHỦ ĐỀ -->
+    <div id="map-view" class="view-section active">
+        <div class="section-title">🌳 VƯỜN ÂM THANH - 8 CHỦ ĐỀ SGK</div>
+        <div class="theme-grid">
+            <div class="theme-card featured" onclick="openTheme1()">
+                <div style="font-size: 2.8rem;">🐦</div>
+                <div style="font-size: 1.3rem; font-weight: 900; color: #33691E;">Chủ đề 1: Sắc màu âm thanh</div>
+                <div style="font-size: 0.95rem; color: #558B2F; font-weight: 700;">Dàn nhạc trong vườn • Ước mơ của bạn Đô</div>
+            </div>
+            <div class="theme-card" onclick="speak('Chủ đề 2: Làn điệu dân ca')"><div style="font-size: 2.5rem;">🌴</div><b>Chủ đề 2: Dân ca</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 3: Mái trường thân yêu')"><div style="font-size: 2.5rem;">🌱</div><b>Chủ đề 3: Mái trường</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 4: Tuổi thơ')"><div style="font-size: 2.5rem;">🎈</div><b>Chủ đề 4: Tuổi thơ</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 5: Mùa xuân')"><div style="font-size: 2.5rem;">🏡</div><b>Chủ đề 5: Mùa xuân</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 6: Gia đình yêu thương')"><div style="font-size: 2.5rem;">❤️</div><b>Chủ đề 6: Gia đình</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 7: Những con vật quanh em')"><div style="font-size: 2.5rem;">🐶</div><b>Chủ đề 7: Con vật</b></div>
+            <div class="theme-card" onclick="speak('Chủ đề 8: Mùa hè vui')"><div style="font-size: 2.5rem;">☀️</div><b>Chủ đề 8: Mùa hè</b></div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: CHI TIẾT CHỦ ĐỀ 1 -->
+    <div id="theme1-view" class="view-section">
+        <button class="btn-back" onclick="switchView('map-view')">⬅ Quay lại Vườn</button>
+        <div class="section-title">🌳 CHỦ ĐỀ 1: SẮC MÀU ÂM THANH</div>
+        <div class="sub-grid">
+            <button class="btn-subworld" onclick="playBirdGame()"><span style="font-size: 2rem;">🐦</span>1. Tìm chim đoán tiếng hót</button>
+            <button class="btn-subworld" onclick="openPracticeSinging()"><span style="font-size: 2rem;">🎵</span>2. Tập hát: Dàn nhạc trong vườn</button>
+            <button class="btn-subworld" onclick="playRhythmGame()"><span style="font-size: 2rem;">👏</span>3. Vỗ tay theo tiết tấu</button>
+            <button class="btn-subworld" onclick="playNoteGame()"><span style="font-size: 2rem;">🎼</span>4. Game Nhặt Nốt Nhạc (Đô-Rê-Mi)</button>
+            <button class="btn-subworld" onclick="openStoryDo(1)"><span style="font-size: 2rem;">🎺</span>5. Thưởng thức: Ước mơ của bạn Đô</button>
+            <button class="btn-subworld" onclick="playInstruments()"><span style="font-size: 2rem;">🥁</span>6. Gõ nhạc cụ (Thanh phách, Song loan)</button>
+        </div>
+    </div>
+</div>
+
+<!-- OVERLAY GAMIFY MODALS -->
+<div id="game-modal" class="game-overlay">
+    <div class="game-box">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+<script>
+    let score = 125;
+    let mediaRecorder;
+    let audioChunks = [];
+    let audioUrl;
+
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'vi-VN';
+            msg.rate = 0.95;
+            window.speechSynthesis.speak(msg);
+        }
+    }
+
+    function addScore(pts) {
+        score += pts;
+        document.getElementById('user-score').innerText = score;
+    }
+
+    function switchView(viewId) {
+        document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+    }
+
+    function openTheme1() {
+        switchView('theme1-view');
+        speak('Bình An chọn bài hát hoặc nghe câu chuyện của bạn Đô nhé!');
+    }
+
+    function closeModal() {
+        document.getElementById('game-modal').classList.remove('active');
+        stopMicrophone();
+        window.speechSynthesis.cancel();
+    }
+
+    /* 1. BÉ TẬP HÁT: DÀN NHẠC TRONG VƯỜN */
+    function openPracticeSinging() {
+        document.getElementById('game-modal').classList.add('active');
+        speak('Bé hãy tập hát bài Dàn nhạc trong vườn nhé!');
+
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🎵 BÉ TẬP HÁT: DÀN NHẠC TRONG VƯỜN</h2>
+            <div style="background: #FFF; padding: 15px; border-radius: 20px; border: 3px solid #81C784; margin-bottom: 15px;">
+                <p style="font-weight: 800; color: #1B5E20; margin-top: 0;">📺 Bấm vào nút màu xanh dưới đây để mở bài hát mẫu trên YouTube:</p>
+                <button class="big-btn btn-green" onclick="window.open('https://youtu.be/XdEoaEhqB1g', '_blank')">▶️ MỞ VIDEO HÁT MẪU (YOUTUBE)</button>
+            </div>
+
+            <div id="mic-area">
+                <p style="font-weight:800; color:#2E7D32;">Bé đã sẵn sàng chưa? Bấm nút để mở Micro thu âm giọng hát nhé!</p>
+                <button class="big-btn btn-pink" onclick="startMicrophone('practice')">🎙️ BẮT ĐẦU HÁT & THU ÂM</button>
+            </div>
+        `;
+    }
+
+    /* 2. CHẾ ĐỘ BIỂU DIỄN KARAOKE */
+    function openKaraokeShow() {
+        document.getElementById('game-modal').classList.add('active');
+        speak('Bé hãy bấm nghe nhạc Beat và hát Karaoke nhé!');
+
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🎤 KHÔNG GIAN BIỂU DIỄN KARAOKE</h2>
+            <div style="background: #FFF; padding: 15px; border-radius: 20px; border: 3px solid #AB47BC; margin-bottom: 15px;">
+                <p style="font-weight: 800; color: #4A148C; margin-top: 0;">🎼 Bấm để mở nhạc đệm Karaoke (Beat):</p>
+                <button class="big-btn btn-purple" onclick="window.open('https://youtu.be/2c_sfeYIwRk', '_blank')">🎶 MỞ NHẠC BEAT KARAOKE</button>
+            </div>
+            
+            <div id="mic-area">
+                <button class="big-btn btn-pink" onclick="startMicrophone('karaoke')">🎙️ BẬT MICRO & HÁT THEO BEAT</button>
+            </div>
+        `;
+    }
+
+    /* THU ÂM MICROPHONE THỰC TẾ */
+    async function startMicrophone(mode) {
+        audioChunks = [];
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
+            mediaRecorder.onstop = () => {
+                let audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                audioUrl = URL.createObjectURL(audioBlob);
+                showRecordingResult();
+            };
+
+            mediaRecorder.start();
+            speak('Microphone đã bật! Bé hãy cất giọng hát thật hay nhé!');
+
+            document.getElementById('mic-area').innerHTML = `
+                <div class="rec-status"><div class="rec-dot"></div><span>ĐANG THU ÂM GIỌNG HÁT BÉ BÌNH AN...</span></div>
+                <button class="big-btn btn-green" onclick="finishSinging()">✅ HOÀN THÀNH HÁT</button>
+            `;
+        } catch (err) {
+            alert("Bé hãy bấm 'Cho phép' (Allow) Microphone để thu âm nhé!");
+        }
+    }
+
+    function finishSinging() {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+            mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+    }
+
+    function stopMicrophone() {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+            mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+    }
+
+    function showRecordingResult() {
+        addScore(20);
+        speak('Tuyệt vời! Bé Bình An hát rất giỏi. Nghe lại bản thu giọng hát của bé nhé!');
+
+        document.getElementById('modal-content').innerHTML = `
+            <h1 style="color: #4CAF50;">🎉 HOÀN THÀNH XUẤT SẮC!</h1>
+            <h2>⭐ +20 điểm thưởng</h2>
+            <p style="font-weight: 800; font-size: 1.1rem; color: #1B5E20;">🎧 Nghe lại bản thu giọng hát của bé Bình An:</p>
+            <audio controls src="${audioUrl}" style="width: 100%; margin: 15px 0;"></audio>
+            <button class="big-btn btn-orange" onclick="closeModal()">🌟 Hoàn thành</button>
+        `;
+    }
+
+    /* ĐẦY ĐỦ 4 MỤC THƯỞNG THỨC ÂM NHẠC: ƯỚC MƠ CỦA BẠN ĐÔ */
+    function openStoryDo(step) {
+        document.getElementById('game-modal').classList.add('active');
+
+        let navTabs = `
+            <div style="display:flex; justify-content:center; gap:5px; margin-bottom:12px;">
+                <button class="tab-btn ${step===1?'active':''}" onclick="openStoryDo(1)">1. Nghe kể</button>
+                <button class="tab-btn ${step===2?'active':''}" onclick="openStoryDo(2)">2. Trả lời</button>
+                <button class="tab-btn ${step===3?'active':''}" onclick="openStoryDo(3)">3. Tiếng Kèn</button>
+                <button class="tab-btn ${step===4?'active':''}" onclick="openStoryDo(4)">4. Ước mơ</button>
+            </div>
+        `;
+
+        if(step === 1) {
+            speak('Mục 1: Lắng nghe câu chuyện Ước mơ của bạn Đô.');
+            document.getElementById('modal-content').innerHTML = navTabs + `
+                <h2>🎺 MỤC 1: CÂU CHUYỆN "ƯỚC MƠ CỦA BẠN ĐÔ"</h2>
+                <div style="font-size: 3.5rem; margin: 10px;">🎺 💂‍♂️ 🎶</div>
+                <div style="background: white; padding: 15px; border-radius: 20px; font-size: 1.1rem; text-align: left; line-height: 1.6; border: 2px solid #A5D6A7;">
+                    "Vào mỗi buổi sáng, bạn Đô thức dậy và nghe thấy tiếng kèn vang lên từ doanh trại quân đội gần nhà. Tiếng kèn dõng dạc, hùng tráng khiến Đô vô cùng thích thú. Đô ước mơ sau này sẽ trở thành một nhạc công quân nhạc tài ba để thổi kèn cho mọi người cùng nghe."
+                </div>
+                <button class="big-btn btn-green" onclick="openStoryDo(2)">Sang Mục 2 ➔</button>
+            `;
+        } else if(step === 2) {
+            speak('Mục 2: Bạn Đô mơ ước chơi nhạc cụ nào?');
+            document.getElementById('modal-content').innerHTML = navTabs + `
+                <h2>❓ MỤC 2: CÂU HỎI TƯƠNG TÁC</h2>
+                <p style="font-size: 1.2rem; font-weight: 800; color: #C62828;">Bạn Đô mơ ước chơi nhạc cụ nào trong đoàn quân nhạc?</p>
+                <button class="big-btn btn-orange" onclick="answerStory(false)">🥁 Trống Đội</button>
+                <button class="big-btn btn-green" onclick="answerStory(true)">🎺 Cây Kèn Quân Nhạc</button>
+            `;
+        } else if(step === 3) {
+            speak('Mục 3: Nghe âm thanh tiếng kèn quân nhạc dõng dạc.');
+            document.getElementById('modal-content').innerHTML = navTabs + `
+                <h2>🔊 MỤC 3: ÂM THANH TIẾNG KÈN QUÂN NHẠC</h2>
+                <button class="big-btn btn-purple" onclick="speak('Tè te té te! Tiếng kèn quân nhạc vang lừng!'); addScore(5);">🎺 Bấm Nghe Tiếng Kèn (Tè te té te)</button>
+                <button class="big-btn btn-green" style="margin-top:15px;" onclick="openStoryDo(4)">Sang Mục 4 ➔</button>
+            `;
+        } else if(step === 4) {
+            speak('Mục 4: Chia sẻ ước mơ của bé Bình An!');
+            document.getElementById('modal-content').innerHTML = navTabs + `
+                <h2>🌟 MỤC 4: ƯỚC MƠ CỦA BÉ BÌNH AN</h2>
+                <p style="font-size: 1.1rem; font-weight: 800; color: #1B5E20;">Bé Bình An sau này lớn lên mơ ước làm nghề gì?</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                    <button class="big-btn btn-pink" onclick="finishStory('Ca sĩ nhí')">🎤 Ca sĩ</button>
+                    <button class="big-btn btn-green" onclick="finishStory('Cô giáo')">👩‍🏫 Cô giáo</button>
+                </div>
+            `;
+        }
+    }
+
+    function answerStory(isCorrect) {
+        if(isCorrect) {
+            addScore(10);
+            speak('Chính xác! Bạn Đô ước mơ thổi kèn!');
+            openStoryDo(3);
+        } else speak('Chưa đúng rồi, thử chọn lại nhé!');
+    }
+
+    function finishStory(dream) {
+        addScore(15);
+        speak(`Ước mơ làm ${dream} của bé Bình An thật tuyệt vời!`);
+        closeModal();
+    }
+
+    function playBirdGame() {
+        document.getElementById('game-modal').classList.add('active');
+        speak('Bé đoán chim chích chòe nhé!');
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🐦 ĐOÁN TIẾNG CHIM</h2>
+            <button class="big-btn btn-green" onclick="addScore(10); closeModal();">🐦 Chim Chích Chòe (+10đ)</button>
+        `;
+    }
+
+    function playNoteGame() {
+        document.getElementById('game-modal').classList.add('active');
+        speak('Bắt nốt MI nhé!');
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🎼 NHẶT NỐT NHẠC</h2>
+            <button class="big-btn btn-green" onclick="addScore(10); closeModal();">🎵 Nốt MI (+10đ)</button>
+        `;
+    }
+
+    function playRhythmGame() {
+        document.getElementById('game-modal').classList.add('active');
+        document.getElementById('modal-content').innerHTML = `
+            <h2>👏 VỖ TAY THEO TIẾT TẤU</h2>
+            <button class="big-btn btn-green" onclick="addScore(10); closeModal();">Hoàn thành (+10đ)</button>
+        `;
+    }
+
+    function playInstruments() {
+        document.getElementById('game-modal').classList.add('active');
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🥁 NHẠC CỤ SGK</h2>
+            <button class="big-btn btn-orange" onclick="speak('Song loan!'); addScore(5);">🪇 Song Loan</button>
+            <button class="big-btn btn-green" style="margin-top:10px;" onclick="closeModal()">Đóng</button>
+        `;
+    }
+
+    function openChallenge() {
+        document.getElementById('game-modal').classList.add('active');
+        document.getElementById('modal-content').innerHTML = `
+            <h2>🏆 SIÊU SAO ÂM NHẠC</h2>
+            <button class="big-btn btn-pink" onclick="closeModal()">Nhận Huy Hiệu 🏆</button>
+        `;
+    }
+</script>
+
+</body>
+</html>
