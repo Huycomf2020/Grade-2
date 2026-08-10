@@ -12,8 +12,8 @@ const topic1Lessons = [
         ],
         game: {
             title: "🐰 Trò chơi: Tìm cà rốt cho Thỏ",
-            question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thích củ cà rốt mang số mấy?",
-            options: ["54", "45", "50", "40"],
+            question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thì củ cà rốt mang số mấy?",
+            options: ["🥕 54", "🥕 45", "🥕 50", "🥕 40"],
             correct: 0
         },
         challenge: {
