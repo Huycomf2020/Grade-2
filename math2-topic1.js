@@ -235,20 +235,29 @@ function loadLessonContent() {
     }
     document.getElementById("theory-content").innerHTML = theoryHTML;
 
-    // 2. Tab Luyện tập
+    // 2. Tab Luyện tập (Nâng cấp thêm khả năng hiển thị ảnh nếu câu hỏi có thuộc tính image)
     const practiceBox = document.getElementById("practice-content");
-    practiceBox.innerHTML = lesson.practice.map((ex, i) => `
-        <div class="exercise-item">
-            <div class="exercise-title">📝 ${ex.type}</div>
-            <p style="font-weight:700; margin-bottom:8px;">${ex.text}</p>
-            <div>
-                ${ex.options.map((opt, optIdx) => `
-                    <button class="option-btn" onclick="checkAnswer(${optIdx === ex.correct})">${opt}</button>
-                `).join('')}
+    practiceBox.innerHTML = lesson.practice.map((ex, i) => {
+        let exImgHTML = ex.image ? `
+            <div style="text-align: center; margin: 10px 0;">
+                <img src="${ex.image}" alt="Hình bài tập" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
             </div>
-        </div>
-    `).join('');
+        ` : '';
 
+        return `
+            <div class="exercise-item">
+                <div class="exercise-title">📝 ${ex.type}</div>
+                <p style="font-weight:700; margin-bottom:8px;">${ex.text}</p>
+                ${exImgHTML}
+                <div>
+                    ${ex.options.map((opt, optIdx) => `
+                        <button class="option-btn" onclick="checkAnswer(${optIdx === ex.correct})">${opt}</button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+    
     // 3. Tab Chơi
     const playBox = document.getElementById("play-content");
     let gameImgHTML = lesson.game.image ? `
