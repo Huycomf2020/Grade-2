@@ -69,8 +69,8 @@ const MUSIC_DATA = {
         song: {
             title: "Học sinh lớp 2 chăm ngoan",
             author: "Phạm Tuyên",
-            singYoutubeId: "p-XdEoaEhqB1g", 
-            karaokeYoutubeId: "p-2c_sfeYIwRk",
+            singYoutubeId: "tNf2IwgmizI", 
+            karaokeYoutubeId: "MLB6k-hb9bU",
             lyrics: "Em là học sinh lớp 2, vui sao khi đến trường. Học tập thật chăm ngoan, vâng lời thầy cô giáo."
         },
         birdGame: {
