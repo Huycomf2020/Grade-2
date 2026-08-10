@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toán Lớp 2 - Tập 1 (Kết Nối Tri Thức)</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ffe66d;
+            --bg-color: #f7f9fc;
+            --text-color: #2f3542;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .math2-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px dashed var(--secondary-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #747d8c;
+            font-size: 16px;
+        }
+
+        .topic-selector {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .topic-btn {
+            background-color: #eccc68;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .topic-btn.active, .topic-btn:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .quiz-card {
+            background: #f1f2f6;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--secondary-color);
+        }
+
+        .question-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #dfe4ea;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            border-color: var(--secondary-color);
+            background-color: #e0f8f5;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            min-height: 24px;
+        }
+
+        .correct { color: #2ed573; }
+        .wrong { color: #ff4757; }
+
+        .score-board {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            background: #fff0f0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="math2-container">
+    <header>
+        <h1>✏️ Luyện Tập Toán 2 - Tập 1 🎈</h1>
+        <div class="subtitle">Sách Kết nối tri thức với cuộc sống</div>
+    </header>
+
+    <!-- Thanh chọn Chủ đề -->
+    <div class="topic-selector" id="topicContainer"></div>
+
+    <!-- Khung làm bài tập -->
+    <div class="quiz-card">
+        <div class="question-title" id="questionText">Đang tải câu hỏi...</div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="feedback" id="feedbackText"></div>
+    </div>
+
+    <!-- Bảng điểm -->
+    <div class="score-board" id="scoreBoard">
+        Điểm của bé: <span id="score">0</span> ⭐
+    </div>
+</div>
+
+<!-- Liên kết đến file script tương ứng -->
+<script src="math2-volume1.js"></script>
+</body>
+</html>
