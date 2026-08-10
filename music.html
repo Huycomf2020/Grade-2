@@ -36,7 +36,6 @@
             position: relative;
         }
 
-        /* NAVBAR HEADER */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -137,7 +136,24 @@
             padding: 20px; text-align: center; position: relative;
         }
 
-        .close-btn { position: absolute; top: 10px; right: 18px; font-size: 2.2rem; cursor: pointer; color: #E65100; font-weight: 900; }
+        .close-btn { position: absolute; top: 10px; right: 18px; font-size: 2.2rem; cursor: pointer; color: #E65100; font-weight: 900; z-index: 10; }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 4px solid #AB47BC;
+            margin-bottom: 12px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
 
         .rec-status {
             display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -159,7 +175,7 @@
     <div class="top-bar">
         <a href="index.html" class="btn-home" onclick="speak('Trở về Trang chủ')">🏠 Grade-2</a>
         <h1 class="header-title">🎵 ÂM NHẠC 2 🎵</h1>
-        <div style="width: 100px;"></div> <!-- Placeholder cân bằng layout -->
+        <div style="width: 100px;"></div>
     </div>
     
     <!-- DASHBOARD BÉ BÌNH AN -->
@@ -261,39 +277,37 @@
         window.speechSynthesis.cancel();
     }
 
-    /* 1. BÉ TẬP HÁT: DÀN NHẠC TRONG VƯỜN */
+    /* 1. BÉ TẬP HÁT: NHÚNG VIDEO HÁT MẪU TRỰC TIẾP TRONG BOX */
     function openPracticeSinging() {
         document.getElementById('game-modal').classList.add('active');
-        speak('Bé hãy tập hát bài Dàn nhạc trong vườn nhé!');
+        speak('Bé hãy tập hát theo video nhé!');
 
         document.getElementById('modal-content').innerHTML = `
-            <h2>🎵 BÉ TẬP HÁT: DÀN NHẠC TRONG VƯỜN</h2>
-            <div style="background: #FFF; padding: 15px; border-radius: 20px; border: 3px solid #81C784; margin-bottom: 15px;">
-                <p style="font-weight: 800; color: #1B5E20; margin-top: 0;">📺 Bấm vào nút màu xanh dưới đây để mở bài hát mẫu trên YouTube:</p>
-                <button class="big-btn btn-green" onclick="window.open('https://youtu.be/XdEoaEhqB1g', '_blank')">▶️ MỞ VIDEO HÁT MẪU (YOUTUBE)</button>
+            <h2 style="margin-top:0;">🎵 BÉ TẬP HÁT: DÀN NHẠC TRONG VƯỜN</h2>
+            <div class="video-container" style="border-color: #81C784;">
+                <iframe src="https://www.youtube.com/embed/XdEoaEhqB1g?autoplay=1&rel=0" title="Dàn nhạc trong vườn" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
 
             <div id="mic-area">
-                <p style="font-weight:800; color:#2E7D32;">Bé đã sẵn sàng chưa? Bấm nút để mở Micro thu âm giọng hát nhé!</p>
+                <p style="font-weight:800; color:#2E7D32; margin: 5px 0;">Bé bấm nút màu hồng bên dưới để bật Micro thu âm giọng hát nhé!</p>
                 <button class="big-btn btn-pink" onclick="startMicrophone('practice')">🎙️ BẮT ĐẦU HÁT & THU ÂM</button>
             </div>
         `;
     }
 
-    /* 2. CHẾ ĐỘ BIỂU DIỄN KARAOKE */
+    /* 2. CHẾ ĐỘ BIỂU DIỄN KARAOKE: NHÚNG YOUTUBE KARAOKE TRỰC TIẾP TRONG BOX */
     function openKaraokeShow() {
         document.getElementById('game-modal').classList.add('active');
-        speak('Bé hãy bấm nghe nhạc Beat và hát Karaoke nhé!');
+        speak('Bé hãy xem video Karaoke và bấm bật micro để hát theo nhé!');
 
         document.getElementById('modal-content').innerHTML = `
-            <h2>🎤 KHÔNG GIAN BIỂU DIỄN KARAOKE</h2>
-            <div style="background: #FFF; padding: 15px; border-radius: 20px; border: 3px solid #AB47BC; margin-bottom: 15px;">
-                <p style="font-weight: 800; color: #4A148C; margin-top: 0;">🎼 Bấm để mở nhạc đệm Karaoke (Beat):</p>
-                <button class="big-btn btn-purple" onclick="window.open('https://youtu.be/2c_sfeYIwRk', '_blank')">🎶 MỞ NHẠC BEAT KARAOKE</button>
+            <h2 style="margin-top:0;">🎤 KHÔNG GIAN BIỂU DIỄN KARAOKE</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/2c_sfeYIwRk?autoplay=1&rel=0" title="Karaoke Dàn nhạc trong vườn" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             
             <div id="mic-area">
-                <button class="big-btn btn-pink" onclick="startMicrophone('karaoke')">🎙️ BẬT MICRO & HÁT THEO BEAT</button>
+                <button class="big-btn btn-purple" onclick="startMicrophone('karaoke')">🎙️ BẬT MICRO & HÁT THEO BEAT</button>
             </div>
         `;
     }
