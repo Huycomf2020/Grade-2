@@ -220,8 +220,16 @@ function loadLessonContent() {
     const lesson = topic1Lessons[currentLessonIdx];
     document.getElementById("lesson-title").innerText = lesson.title;
 
-    // 1. Tab Học
-    document.getElementById("theory-content").innerText = lesson.theory;
+    // 1. Tab Học (Sử dụng innerHTML và tự kiểm tra chèn ảnh)
+    let theoryHTML = `<p>${lesson.theory}</p>`;
+    if (lesson.image) {
+        theoryHTML += `
+            <div style="text-align: center; margin-top: 15px;">
+                <img src="${lesson.image}" alt="${lesson.title}" style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+        `;
+    }
+    document.getElementById("theory-content").innerHTML = theoryHTML;
 
     // 2. Tab Luyện tập
     const practiceBox = document.getElementById("practice-content");
@@ -239,10 +247,17 @@ function loadLessonContent() {
 
     // 3. Tab Chơi
     const playBox = document.getElementById("play-content");
+    let gameImgHTML = lesson.game.image ? `
+        <div style="text-align: center; margin: 12px 0;">
+            <img src="${lesson.game.image}" alt="${lesson.game.title}" style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+    ` : '';
+
     playBox.innerHTML = `
         <div class="interactive-game">
             <div class="game-title">${lesson.game.title}</div>
-            <p style="font-size:1.1rem; font-weight:800; margin-bottom:15px;">${lesson.game.question}</p>
+            <p style="font-size:1.1rem; font-weight:800; margin-bottom:10px;">${lesson.game.question}</p>
+            ${gameImgHTML}
             <div>
                 ${lesson.game.options.map((opt, optIdx) => `
                     <button class="option-btn" onclick="checkAnswer(${optIdx === lesson.game.correct})">${opt}</button>
@@ -253,10 +268,17 @@ function loadLessonContent() {
 
     // 4. Tab Thử thách
     const challengeBox = document.getElementById("challenge-content");
+    let challengeImgHTML = lesson.challenge.image ? `
+        <div style="text-align: center; margin: 12px 0;">
+            <img src="${lesson.challenge.image}" alt="${lesson.challenge.title}" style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+    ` : '';
+
     challengeBox.innerHTML = `
         <div class="interactive-game" style="background:#e8f8f5; border-color:#00b894;">
             <div class="game-title" style="color:#00b894;">${lesson.challenge.title}</div>
-            <p style="font-size:1.1rem; font-weight:800; margin-bottom:15px;">${lesson.challenge.question}</p>
+            <p style="font-size:1.1rem; font-weight:800; margin-bottom:10px;">${lesson.challenge.question}</p>
+            ${challengeImgHTML}
             <div>
                 ${lesson.challenge.options.map((opt, optIdx) => `
                     <button class="option-btn" onclick="checkAnswer(${optIdx === lesson.challenge.correct})">${opt}</button>
