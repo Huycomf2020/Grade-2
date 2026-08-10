@@ -267,15 +267,41 @@ function loadLessonContent() {
     }
 }
 
-// Kiểm tra câu trả lời
+// Kiểm tra câu trả lời với Custom Pop-up
 function checkAnswer(isCorrect) {
     if (isCorrect) {
         userScore += 10;
         document.getElementById("user-score").innerText = userScore;
-        alert("🎉 Chính xác rồi! Bé giỏi quá (+10 điểm) ⭐");
+        
+        showCustomModal(
+            "🎉", 
+            "Chính xác rồi!<br><span style='color: #e67e22;'>Bé giỏi quá (+10 điểm) ⭐</span>", 
+            "success"
+        );
     } else {
-        alert("❌ Chưa đúng rồi, bé hãy thử lại nhé!");
+        showCustomModal(
+            "❌", 
+            "Chưa đúng rồi,<br>bé hãy thử lại nhé! 💪", 
+            "error"
+        );
     }
+}
+
+// Hàm hiển thị Pop-up
+function showCustomModal(icon, messageHTML, type) {
+    const modal = document.getElementById("custom-modal");
+    const box = document.getElementById("modal-box");
+    
+    document.getElementById("modal-icon").innerHTML = icon;
+    document.getElementById("modal-message").innerHTML = messageHTML;
+    
+    box.className = "modal-content " + type;
+    modal.style.display = "flex";
+}
+
+// Hàm đóng Pop-up
+function closeModal() {
+    document.getElementById("custom-modal").style.display = "none";
 }
 
 // Đọc giọng nữ tự động (Chậm rãi, dịu dàng)
