@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 HÀNH TRÌNH HỌC TẬP LỚP 2 - Bé Phan Ngọc Bình An</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #E8F5E9;
+            --card-bg: #FFFFFF;
+            --text-color: #2C3E50;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 950px;
+            background: #FFFDE7;
+            border: 8px solid #81C784;
+            border-radius: 35px;
+            padding: 25px 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* HEADER & DASHBOARD */
+        .header-title {
+            text-align: center;
+            font-size: 2.3rem;
+            color: #2E7D32;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px #C8E6C9;
+        }
+
+        .user-dashboard {
+            background: #FFFFFF;
+            border-radius: 25px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 0 #A5D6A7;
+            margin-bottom: 25px;
+            border: 3px solid #66BB6A;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #1B5E20;
+        }
+
+        .avatar {
+            font-size: 2.8rem;
+            background: #E8F5E9;
+            border-radius: 50%;
+            padding: 5px;
+            border: 3px solid #81C784;
+        }
+
+        .score-badge {
+            background: #FFF3E0;
+            border: 3px solid #FFB74D;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            color: #E65100;
+            font-weight: 900;
+            box-shadow: 0 4px 0 #FFE0B2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            color: #388E3C;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        /* SUBJECTS GRID */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px 15px;
+            text-align: center;
+            border: 4px solid;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .subject-card:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+        }
+
+        .subject-icon {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .subject-name {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .subject-desc {
+            font-size: 0.95rem;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+
+        /* CARD COLOR VARIANTS */
+        .card-math {
+            border-color: #FFB74D;
+            background: #FFF8E1;
+            box-shadow: 0 8px 0 #FFE0B2;
+            color: #E65100;
+        }
+
+        .card-vietnamese {
+            border-color: #4FC3F7;
+            background: #E1F5FE;
+            box-shadow: 0 8px 0 #B3E5FC;
+            color: #0277BD;
+        }
+
+        .card-english {
+            border-color: #FF8A65;
+            background: #FBE9E7;
+            box-shadow: 0 8px 0 #FFCCBC;
+            color: #BF360C;
+        }
+
+        .card-music {
+            border-color: #BA68C8;
+            background: #F3E5F5;
+            box-shadow: 0 8px 0 #E1BEE7;
+            color: #6A1B9A;
+        }
+
+        .card-art {
+            border-color: #F06292;
+            background: #FCE4EC;
+            box-shadow: 0 8px 0 #F8BBD0;
+            color: #880E4F;
+        }
+
+        .card-science {
+            border-color: #81C784;
+            background: #E8F5E9;
+            box-shadow: 0 8px 0 #C8E6C9;
+            color: #1B5E20;
+        }
+
+        .card-ethics {
+            border-color: #4DB6AC;
+            background: #E0F2F1;
+            box-shadow: 0 8px 0 #B2DFDB;
+            color: #004D40;
+        }
+
+        /* WELCOME BANNER */
+        .welcome-box {
+            background: #FFF3E0;
+            border: 3px dashed #FFB74D;
+            border-radius: 22px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #E65100;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <!-- HEADER -->
+    <h1 class="header-title">🌟 GRADE 2 - LỚP 2 HỌC VUI 🌟</h1>
+    
+    <!-- DASHBOARD BÉ BÌNH AN -->
+    <div class="user-dashboard">
+        <div class="user-info">
+            <span class="avatar">👧</span>
+            <div>
+                <div>Bé Phan Ngọc Bình An</div>
+                <div style="font-size: 0.85rem; color: #558B2F; font-weight: 700;">Học sinh Lớp 2A • AEEF KIDS</div>
+            </div>
+        </div>
+        <div class="score-badge">🏆 <span id="user-score">100%</span> Chăm ngoan</div>
+    </div>
+
+    <div class="section-title">CHỌN MÔN HỌC BÉ YÊU THÍCH NHÉ! 👇</div>
+
+    <!-- DANH SÁCH CÁC MÔN HỌC LỚP 2 -->
+    <div class="subjects-grid">
+        
+        <!-- 1. TOÁN -->
+        <div class="subject-card card-math" onclick="openSubject('Toán', 'math.html')">
+            <div class="subject-icon">🔢</div>
+            <div class="subject-name">TOÁN LỚP 2</div>
+            <div class="subject-desc">Cộng trừ, Hình học & Trò chơi con số</div>
+        </div>
+
+        <!-- 2. TIẾNG VIỆT -->
+        <div class="subject-card card-vietnamese" onclick="openSubject('Tiếng Việt', 'vietnamese.html')">
+            <div class="subject-icon">📖</div>
+            <div class="subject-name">TIẾNG VIỆT</div>
+            <div class="subject-desc">Tập đọc, Luyện từ và câu, Tập làm văn</div>
+        </div>
+
+        <!-- 3. TIẾNG ANH -->
+        <div class="subject-card card-english" onclick="openSubject('Tiếng Anh', 'english.html')">
+            <div class="subject-icon">🔤</div>
+            <div class="subject-name">TIẾNG ANH</div>
+            <div class="subject-desc">Alphabet, Vocabulary & Fun Games</div>
+        </div>
+
+        <!-- 4. ÂM NHẠC -->
+        <div class="subject-card card-music" onclick="openSubject('Âm nhạc', 'music.html')">
+            <div class="subject-icon">🎵</div>
+            <div class="subject-name">ÂM NHẠC</div>
+            <div class="subject-desc">Hát, Nhạc cụ, Karaoke & Vườn âm thanh</div>
+        </div>
+
+        <!-- 5. MỸ THUẬT -->
+        <div class="subject-card card-art" onclick="openSubject('Mỹ thuật', 'art.html')">
+            <div class="subject-icon">🎨</div>
+            <div class="subject-name">MỸ THUẬT</div>
+            <div class="subject-desc">Vẽ tranh, Sáng tạo sắc màu & Thủ công</div>
+        </div>
+
+        <!-- 6. TỰ NHIÊN VÀ XÃ HỘI -->
+        <div class="subject-card card-science" onclick="openSubject('Tự nhiên và Xã hội', 'science.html')">
+            <div class="subject-icon">🍃</div>
+            <div class="subject-name">TỰ NHIÊN & XÃ HỘI</div>
+            <div class="subject-desc">Khám phá thiên nhiên & Con người quanh em</div>
+        </div>
+
+        <!-- 7. ĐẠO ĐỨC -->
+        <div class="subject-card card-ethics" onclick="openSubject('Đạo đức', 'ethics.html')">
+            <div class="subject-icon">❤️</div>
+            <div class="subject-name">ĐẠO ĐỨC</div>
+            <div class="subject-desc">Bài học làm người tốt & Kỹ năng sống</div>
+        </div>
+
+    </div>
+
+    <!-- BANNER CHÀO MỪNG -->
+    <div class="welcome-box">
+        🎉 Chúc bé Phan Ngọc Bình An có những giờ học "Vừa chơi - Vừa học" thật nhiều niềm vui và nhiều sao thưởng!
+    </div>
+</div>
+
+<script>
+    // Giọng đọc Hướng dẫn âm thanh
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'vi-VN';
+            msg.rate = 0.95;
+            window.speechSynthesis.speak(msg);
+        }
+    }
+
+    // Chào mừng bé khi mở trang
+    window.onload = function() {
+        speak("Chào mừng bé Phan Ngọc Bình An đến với trang học tập Lớp 2! Bé hãy chọn một môn học nhé!");
+    };
+
+    // Điều hướng chuyển môn học
+    function openSubject(name, fileUrl) {
+        speak("Bé đã chọn môn " + name);
+        
+        // Nếu là môn Âm nhạc, chuyển tới file nhạc (hoặc đổi fileUrl thành link app âm nhạc bạn đặt)
+        if (name === 'Âm nhạc') {
+            setTimeout(() => {
+                // Bạn đổi 'music.html' thành file hoặc đường dẫn chứa app Âm nhạc đã tạo
+                window.location.href = fileUrl; 
+            }, 800);
+        } else {
+            // Với các môn chưa tạo file, hiển thị thông báo khích lệ bé
+            setTimeout(() => {
+                alert("Môn " + name + " đang được chuẩn bị bài học mới cho bé Bình An nhé!");
+            }, 500);
+        }
+    }
+</script>
+
+</body>
+</html>
