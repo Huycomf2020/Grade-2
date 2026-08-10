@@ -317,23 +317,21 @@
         speak("Chào mừng bé Phan Ngọc Bình An đến với trang học tập Lớp 2! Bé hãy chọn một môn học nhé!");
     };
 
-    // Điều hướng chuyển môn học
-    function openSubject(name, fileUrl) {
-        speak("Bé đã chọn môn " + name);
-        
-        // Nếu là môn Âm nhạc, chuyển tới file nhạc (hoặc đổi fileUrl thành link app âm nhạc bạn đặt)
-        if (name === 'Âm nhạc') {
-            setTimeout(() => {
-                // Bạn đổi 'music.html' thành file hoặc đường dẫn chứa app Âm nhạc đã tạo
-                window.location.href = fileUrl; 
-            }, 800);
-        } else {
-            // Với các môn chưa tạo file, hiển thị thông báo khích lệ bé
-            setTimeout(() => {
-                alert("Môn " + name + " đang được chuẩn bị bài học mới cho bé Bình An nhé!");
-            }, 500);
-        }
+   // Điều hướng chuyển môn học
+function openSubject(name, fileUrl) {
+    speak("Bé đã chọn môn " + name);
+    
+    // Kiểm tra nếu có fileUrl thì chuyển trang, ngược lại mới báo chưa có bài
+    if (fileUrl) {
+        setTimeout(() => {
+            window.location.href = fileUrl; 
+        }, 800);
+    } else {
+        setTimeout(() => {
+            alert("Môn " + name + " đang được chuẩn bị bài học mới cho bé Bình An nhé!");
+        }, 500);
     }
+}
 </script>
 
 </body>
