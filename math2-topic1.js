@@ -4,25 +4,55 @@ const topic1Lessons = [
         id: 1,
         title: "Bài 1: Ôn tập các số đến 100",
         theory: "Cấu tạo số có 2 chữ số gồm hàng chục ở bên trái và hàng đơn vị ở bên phải. Ví dụ, phân tích cấu tạo số '87' thì 87 = 80 + 7, gồm 8 chục và 7 đơn vị. Tương tự vậy, số '34' là 3 chục và 4 đơn vị.",
+        image: "https://i.ibb.co/39hJrWTB/chuc-donvi.png",
         practice: [
             { type: "Dạng 1: Hoàn thành bảng", text: "Số 51 gồm mấy chục và mấy đơn vị?", options: ["5 chục và 1 đơn vị", "1 chục và 5 đơn vị"], correct: 0 },
             { type: "Dạng 2: Sắp xếp dãy số", text: "Sắp xếp dãy số sau theo thứ tự từ bé đến lớn: 58, 29, 89, 49", options: ["29, 49, 58, 89", "89, 58, 49, 29"], correct: 0 },
             { type: "Dạng 3: Tách số thành tổng", text: "Viết số 59 thành tổng các chục và đơn vị:", options: ["59 = 50 + 9", "59 = 5 + 90"], correct: 0 },
-            { type: "Dạng 4: So sánh số", text: "Tìm các số lớn hơn 60 trong các số: 58, 69, 50, 89", options: ["69 và 89", "58 và 50"], correct: 0 }
+            { type: "Dạng 4: Đúng hay sai", text: "Số 32 gồm 2 chục và 3 đơn vị:", options: ["Đúng", "Sai"], correct: 1 },
+            { type: "Dạng 5: Đúng hay sai", text: "Số 23 đọc là hai mươi ba:", options: ["Đúng", "Sai"], correct: 0 },
+            { type: "Dạng 6: Đúng hay sai", text: "Số 7 chục và 0 đơn vị là số 70:", options: ["Đúng", "Sai"], correct: 0 },
+            { type: "Dạng 7: Dấu lớn hay bé", text: "27 ? 29", options: ["<", ">"], correct: 0 },
+            { type: "Dạng 8: Dấu lớn hay bé", text: "76 ? 71+3", options: ["<", ">"], correct: 1 },
+            { type: "Dạng 9: Dấu lớn hay bé", text: "27+2 ? 53-23", options: ["<", ">"], correct: 0 },
+            { type: "Dạng 10: So sánh số", text: "Tìm các số lớn hơn 60 trong các số: 58, 69, 50, 89", options: ["69 và 89", "58 và 50"], correct: 0 }
         ],
         game: {
-            title: "🐰 Trò chơi: Tìm cà rốt cho Thỏ",
-            question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thì củ cà rốt mang số mấy?",
-            options: ["🥕 54", "🥕 45", "🥕 50", "🥕 40"],
-            correct: 0
-        },
-        challenge: {
-            title: "🏆 Thử thách: Lắp ghép bảng 100 số",
-            question: "Miếng bìa chứa các số 65, 66 thuộc hàng nào trong bảng 100 số?",
-            options: ["Hàng số từ 61 đến 70", "Hàng số từ 51 đến 60"],
-            correct: 0
-        }
+        title: "🐰 Trò chơi: Tìm cà rốt cho Thỏ",
+        questions: [
+            {
+                question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thì củ cà rốt mang số mấy?",
+                options: ["🥕 54", "🥕 45", "🥕 50", "🥕 40"],
+                correct: 0
+            },
+            {
+                question: "Chú thỏ mang bảng '7 chục và 7 đơn vị' nối với củ cà rốt nào?",
+                options: ["🥕 70", "🥕 7", "🥕 77", "🥕 17"],
+                correct: 3
+            },
+            {
+                question: "Chú thỏ mang bảng '6 chục và 2 đơn vị' nối với củ cà rốt nào?",
+                options: ["🥕 66", "🥕 60", "🥕 6", "🥕 62"],
+                correct: 4
+            }
+        ]
     },
+   challenge: {
+        title: "🏆 Thử thách: Nối cặp tương ứng",
+        questions: [
+            {
+                type: "matching",
+                question: "Nối xe tải với phép tính tương ứng:",
+                // Mảng các cặp đúng
+                pairs: [
+                    { left: "🚚 Số 63 gồm 6 chục và 3 đơn vị", right: "63 = 60 + 3" },
+                    { left: "🚚 Số 49 gồm 4 chục và 9 đơn vị", right: "49 = 40 + 9" },
+                    { left: "🚚 Số 55 gồm 5 chục và 5 đơn vị", right: "55 = 50 + 5" },
+                    { left: "🚚 Số 81 gồm 8 chục và 1 đơn vị", right: "81 = 80 + 1" }
+                ]
+            }
+        ]
+    }
    {
         id: 2,
         title: "Bài 2: Tia số. Số liền trước, số liền sau",
@@ -279,27 +309,56 @@ function loadLessonContent() {
         </div>
     `;
 
-    // 4. Tab Thử thách
+    // 4. Tab Thử thách (Hỗ trợ cả trắc nghiệm và Nối cặp Matching)
     const challengeBox = document.getElementById("challenge-content");
-    let challengeImgHTML = lesson.challenge.image ? `
-        <div style="text-align: center; margin: 12px 0;">
-            <img src="${lesson.challenge.image}" alt="${lesson.challenge.title}" style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        </div>
-    ` : '';
+    const challengeList = lesson.challenge.questions || [lesson.challenge];
 
     challengeBox.innerHTML = `
         <div class="interactive-game" style="background:#e8f8f5; border-color:#00b894;">
             <div class="game-title" style="color:#00b894;">${lesson.challenge.title}</div>
-            <p style="font-size:1.1rem; font-weight:800; margin-bottom:10px;">${lesson.challenge.question}</p>
-            ${challengeImgHTML}
-            <div>
-                ${lesson.challenge.options.map((opt, optIdx) => `
-                    <button class="option-btn" onclick="checkAnswer(${optIdx === lesson.challenge.correct})">${opt}</button>
-                `).join('')}
-            </div>
+            ${challengeList.map((q, qIdx) => {
+                if (q.type === "matching") {
+                    // Trộn ngẫu nhiên vế phải để bé nối
+                    const leftItems = q.pairs.map(p => p.left);
+                    const rightItems = [...q.pairs.map(p => p.right)].sort(() => Math.random() - 0.5);
+
+                    return `
+                        <div style="background: white; border-radius: 16px; padding: 15px; margin-top: 12px; border: 2px solid #55efc4;">
+                            <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:12px;">
+                                Câu ${qIdx + 1}: ${q.question}
+                            </p>
+                            <div class="matching-container" id="matching-game-${qIdx}">
+                                <div class="matching-col">
+                                    ${leftItems.map((item, idx) => `
+                                        <button class="match-btn match-left" onclick="selectMatch(this, 'left', '${item.replace(/'/g, "\\'")}', ${qIdx})">${item}</button>
+                                    `).join('')}
+                                </div>
+                                <div class="matching-col">
+                                    ${rightItems.map((item, idx) => `
+                                        <button class="match-btn match-right" onclick="selectMatch(this, 'right', '${item.replace(/'/g, "\\'")}', ${qIdx})">${item}</button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Nếu là câu hỏi trắc nghiệm bình thường
+                return `
+                    <div style="background: white; border-radius: 16px; padding: 15px; margin-top: 12px; text-align: left; border: 2px solid #55efc4;">
+                        <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:8px;">
+                            Câu ${qIdx + 1}: ${q.question}
+                        </p>
+                        <div>
+                            ${q.options.map((opt, optIdx) => `
+                                <button class="option-btn" onclick="checkAnswer(${optIdx === q.correct})">${opt}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('')}
         </div>
     `;
-
     if (currentTab === 'learn') {
         startReading();
     }
@@ -394,5 +453,60 @@ function resetReadButton() {
     if (btn) {
         btn.classList.remove("stop");
         btn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Đọc Lý Thuyết`;
+    }
+}
+// Biến lưu trạng thái nối
+let selectedLeft = null;
+let selectedRight = null;
+
+function selectMatch(btn, type, val, qIdx) {
+    const parent = document.getElementById(`matching-game-${qIdx}`);
+    
+    if (type === 'left') {
+        parent.querySelectorAll('.match-left').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedLeft = { btn: btn, val: val };
+    } else {
+        parent.querySelectorAll('.match-right').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedRight = { btn: btn, val: val };
+    }
+
+    // Khi chọn đủ 2 vế bên trái và bên phải
+    if (selectedLeft && selectedRight) {
+        const currentChallenge = topic1Lessons[currentLessonIdx].challenge.questions[qIdx];
+        // Tìm cặp đúng
+        const isPairCorrect = currentChallenge.pairs.some(
+            p => p.left === selectedLeft.val && p.right === selectedRight.val
+        );
+
+        if (isPairCorrect) {
+            // Đánh dấu nối đúng
+            selectedLeft.btn.classList.remove('selected');
+            selectedRight.btn.classList.remove('selected');
+            selectedLeft.btn.classList.add('matched');
+            selectedRight.btn.classList.add('matched');
+            selectedLeft.btn.disabled = true;
+            selectedRight.btn.disabled = true;
+
+            userScore += 5;
+            document.getElementById("user-score").innerText = userScore;
+            
+            selectedLeft = null;
+            selectedRight = null;
+
+            // Kiểm tra xem đã hoàn thành hết các cặp chưa
+            const remaining = parent.querySelectorAll('.match-btn:not(.matched)').length;
+            if (remaining === 0) {
+                checkAnswer(true); // Hoàn thành toàn bộ bài nối
+            }
+        } else {
+            // Chọn sai
+            alert("❌ Cặp này chưa đúng rồi, bé chọn lại nhé!");
+            selectedLeft.btn.classList.remove('selected');
+            selectedRight.btn.classList.remove('selected');
+            selectedLeft = null;
+            selectedRight = null;
+        }
     }
 }
