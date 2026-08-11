@@ -74,8 +74,8 @@ const topic1Lessons = [
             title: "🐢 Thử thách: Cuộc đua của các chú Thỏ",
             image: "https://i.ibb.co/xqJ9W5Rx/tia-tho.png",
             question: "Thỏ trắng chạy ở làn liền trước làn số 4. Thỏ trắng chạy ở làn số mấy?",
-            options: ["Làn số 3", "Làn số 5"],
-            correct: 0
+            options: ["Làn số 5", "Làn số 3"],
+            correct: 1
         }
     },
     {
@@ -90,8 +90,8 @@ const topic1Lessons = [
         game: {
             title: "⭐ Trò chơi: Tìm cặp sao sáng",
             question: "Đếm có 12 sao đỏ và 10 sao vàng. Tổng số sao là bao nhiêu?",
-            options: ["22 ngôi sao", "20 ngôi sao"],
-            correct: 0
+            options: ["20 ngôi sao", "22 ngôi sao"],
+            correct: 1
         },
         challenge: {
             title: "🚂 Thử thách: Ghép toa tàu mừng xuân",
