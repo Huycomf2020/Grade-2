@@ -18,42 +18,42 @@ const topic1Lessons = [
             { type: "Dạng 10: So sánh số", text: "Tìm các số lớn hơn 60 trong các số: 58, 69, 50, 89", options: ["69 và 89", "58 và 50"], correct: 0 }
         ],
         game: {
-        title: "🐰 Trò chơi: Tìm cà rốt cho Thỏ",
-        questions: [
-            {
-                question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thì củ cà rốt mang số mấy?",
-                options: ["🥕 54", "🥕 45", "🥕 50", "🥕 40"],
-                correct: 0
-            },
-            {
-                question: "Chú thỏ mang bảng '7 chục và 7 đơn vị' nối với củ cà rốt nào?",
-                options: ["🥕 70", "🥕 7", "🥕 77", "🥕 17"],
-                correct: 3
-            },
-            {
-                question: "Chú thỏ mang bảng '6 chục và 2 đơn vị' nối với củ cà rốt nào?",
-                options: ["🥕 66", "🥕 60", "🥕 6", "🥕 62"],
-                correct: 4
-            }
-        ]
-    },
-   challenge: {
-        title: "🏆 Thử thách: Nối cặp tương ứng",
-        questions: [
-            {
-                type: "matching",
-                question: "Nối xe tải với phép tính tương ứng:",
-                // Mảng các cặp đúng
-                pairs: [
-                    { left: "🚚 Số 63 gồm 6 chục và 3 đơn vị", right: "63 = 60 + 3" },
-                    { left: "🚚 Số 49 gồm 4 chục và 9 đơn vị", right: "49 = 40 + 9" },
-                    { left: "🚚 Số 55 gồm 5 chục và 5 đơn vị", right: "55 = 50 + 5" },
-                    { left: "🚚 Số 81 gồm 8 chục và 1 đơn vị", right: "81 = 80 + 1" }
-                ]
-            }
-        ]
-    }
-   {
+            title: "🐰 Trò chơi: Tìm cà rốt cho Thỏ",
+            questions: [
+                {
+                    question: "Chú thỏ mang bảng '5 chục và 4 đơn vị' thì củ cà rốt mang số mấy?",
+                    options: ["🥕 54", "🥕 45", "🥕 50", "🥕 40"],
+                    correct: 0
+                },
+                {
+                    question: "Chú thỏ mang bảng '7 chục và 7 đơn vị' nối với củ cà rốt nào?",
+                    options: ["🥕 70", "🥕 7", "🥕 77", "🥕 17"],
+                    correct: 2 // Đã sửa: 77 là vị trí chỉ số 2
+                },
+                {
+                    question: "Chú thỏ mang bảng '6 chục và 2 đơn vị' nối với củ cà rốt nào?",
+                    options: ["🥕 66", "🥕 60", "🥕 6", "🥕 62"],
+                    correct: 3 // Đã sửa: 62 là vị trí chỉ số 3
+                }
+            ]
+        },
+        challenge: {
+            title: "🏆 Thử thách: Nối cặp tương ứng",
+            questions: [
+                {
+                    type: "matching",
+                    question: "Nối xe tải với phép tính tương ứng:",
+                    pairs: [
+                        { left: "🚚 Số 63 gồm 6 chục và 3 đơn vị", right: "63 = 60 + 3" },
+                        { left: "🚚 Số 49 gồm 4 chục và 9 đơn vị", right: "49 = 40 + 9" },
+                        { left: "🚚 Số 55 gồm 5 chục và 5 đơn vị", right: "55 = 50 + 5" },
+                        { left: "🚚 Số 81 gồm 8 chục và 1 đơn vị", right: "81 = 80 + 1" }
+                    ]
+                }
+            ]
+        }
+    }, // Đã sửa: Thêm ngoặc đóng Bài 1 và dấu phẩy
+    {
         id: 2,
         title: "Bài 2: Tia số. Số liền trước, số liền sau",
         theory: "Tia số có vạch đầu tiên là số 0, là số bé nhất. Trên tia số, mỗi số lớn hơn các số bên trái và bé hơn các số bên phải nó. Số liền trước của 4 là 3; số liền sau của 4 là 5.",
@@ -195,7 +195,6 @@ function loadVoice() {
     let voices = synth.getVoices();
     let viVoices = voices.filter(v => v.lang.includes("vi"));
     if (viVoices.length > 0) {
-        // Ưu tiên giọng nữ dịu dàng như HoaiMy hoặc Linh
         femaleVoice = viVoices.find(v => v.name.includes("HoaiMy") || v.name.includes("Linh") || v.name.toLowerCase().includes("female")) || viVoices[0];
     }
 }
@@ -243,7 +242,6 @@ function switchTab(tabName) {
     document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
     document.getElementById(`tab-${tabName}`).classList.add("active");
 
-    // Nếu chuyển sang tab Học thì tự động đọc lý thuyết chậm rãi dịu dàng
     if (tabName === 'learn') {
         startReading();
     }
@@ -254,7 +252,7 @@ function loadLessonContent() {
     const lesson = topic1Lessons[currentLessonIdx];
     document.getElementById("lesson-title").innerText = lesson.title;
 
-    // 1. Tab Học (Sử dụng innerHTML và tự kiểm tra chèn ảnh)
+    // 1. Tab Học
     let theoryHTML = `<p>${lesson.theory}</p>`;
     if (lesson.image) {
         theoryHTML += `
@@ -265,7 +263,7 @@ function loadLessonContent() {
     }
     document.getElementById("theory-content").innerHTML = theoryHTML;
 
-    // 2. Tab Luyện tập (Nâng cấp thêm khả năng hiển thị ảnh nếu câu hỏi có thuộc tính image)
+    // 2. Tab Luyện tập
     const practiceBox = document.getElementById("practice-content");
     practiceBox.innerHTML = lesson.practice.map((ex, i) => {
         let exImgHTML = ex.image ? `
@@ -288,28 +286,38 @@ function loadLessonContent() {
         `;
     }).join('');
     
-    // 3. Tab Chơi
+    // 3. Tab Chơi (Tự động thích ứng cả 1 câu hỏi hoặc nhiều câu hỏi)
     const playBox = document.getElementById("play-content");
-    let gameImgHTML = lesson.game.image ? `
-        <div style="text-align: center; margin: 12px 0;">
-            <img src="${lesson.game.image}" alt="${lesson.game.title}" style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        </div>
-    ` : '';
+    const gameList = lesson.game.questions || [lesson.game];
 
     playBox.innerHTML = `
         <div class="interactive-game">
             <div class="game-title">${lesson.game.title}</div>
-            <p style="font-size:1.1rem; font-weight:800; margin-bottom:10px;">${lesson.game.question}</p>
-            ${gameImgHTML}
-            <div>
-                ${lesson.game.options.map((opt, optIdx) => `
-                    <button class="option-btn" onclick="checkAnswer(${optIdx === lesson.game.correct})">${opt}</button>
-                `).join('')}
-            </div>
+            ${gameList.map((q, qIdx) => {
+                let imgHTML = q.image ? `
+                    <div style="text-align: center; margin: 10px 0;">
+                        <img src="${q.image}" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                    </div>
+                ` : '';
+
+                return `
+                    <div style="background: white; border-radius: 16px; padding: 15px; margin-top: 12px; text-align: left; border: 2px solid #ffeaa7;">
+                        <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:8px;">
+                            ${gameList.length > 1 ? `Câu ${qIdx + 1}: ` : ''}${q.question}
+                        </p>
+                        ${imgHTML}
+                        <div>
+                            ${q.options.map((opt, optIdx) => `
+                                <button class="option-btn" onclick="checkAnswer(${optIdx === q.correct})">${opt}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('')}
         </div>
     `;
 
-    // 4. Tab Thử thách (Hỗ trợ cả trắc nghiệm và Nối cặp Matching)
+    // 4. Tab Thử thách (Hỗ trợ cả Trắc nghiệm và Nối cặp Matching)
     const challengeBox = document.getElementById("challenge-content");
     const challengeList = lesson.challenge.questions || [lesson.challenge];
 
@@ -318,14 +326,13 @@ function loadLessonContent() {
             <div class="game-title" style="color:#00b894;">${lesson.challenge.title}</div>
             ${challengeList.map((q, qIdx) => {
                 if (q.type === "matching") {
-                    // Trộn ngẫu nhiên vế phải để bé nối
                     const leftItems = q.pairs.map(p => p.left);
                     const rightItems = [...q.pairs.map(p => p.right)].sort(() => Math.random() - 0.5);
 
                     return `
                         <div style="background: white; border-radius: 16px; padding: 15px; margin-top: 12px; border: 2px solid #55efc4;">
                             <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:12px;">
-                                Câu ${qIdx + 1}: ${q.question}
+                                ${challengeList.length > 1 ? `Câu ${qIdx + 1}: ` : ''}${q.question}
                             </p>
                             <div class="matching-container" id="matching-game-${qIdx}">
                                 <div class="matching-col">
@@ -343,11 +350,10 @@ function loadLessonContent() {
                     `;
                 }
 
-                // Nếu là câu hỏi trắc nghiệm bình thường
                 return `
                     <div style="background: white; border-radius: 16px; padding: 15px; margin-top: 12px; text-align: left; border: 2px solid #55efc4;">
                         <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:8px;">
-                            Câu ${qIdx + 1}: ${q.question}
+                            ${challengeList.length > 1 ? `Câu ${qIdx + 1}: ` : ''}${q.question}
                         </p>
                         <div>
                             ${q.options.map((opt, optIdx) => `
@@ -359,6 +365,7 @@ function loadLessonContent() {
             }).join('')}
         </div>
     `;
+
     if (currentTab === 'learn') {
         startReading();
     }
@@ -384,7 +391,7 @@ function checkAnswer(isCorrect) {
     }
 }
 
-// Hàm hiển thị Pop-up
+// Hiển thị Pop-up
 function showCustomModal(icon, messageHTML, type) {
     const modal = document.getElementById("custom-modal");
     const box = document.getElementById("modal-box");
@@ -396,12 +403,12 @@ function showCustomModal(icon, messageHTML, type) {
     modal.style.display = "flex";
 }
 
-// Hàm đóng Pop-up
+// Đóng Pop-up
 function closeModal() {
     document.getElementById("custom-modal").style.display = "none";
 }
 
-// Đọc giọng nữ tự động (Chậm rãi, dịu dàng)
+// Đọc lý thuyết tự động
 function toggleReadTheory() {
     if (isSpeaking) {
         stopReading();
@@ -418,8 +425,8 @@ function startReading() {
 
     currentUtterance = new SpeechSynthesisUtterance(lesson.theory);
     currentUtterance.lang = "vi-VN";
-    currentUtterance.rate = 0.75; // Tốc độ đọc chậm rãi cho học sinh lớp 2
-    currentUtterance.pitch = 1.2;  // Giọng dịu dàng
+    currentUtterance.rate = 0.75;
+    currentUtterance.pitch = 1.2;
 
     if (femaleVoice) {
         currentUtterance.voice = femaleVoice;
@@ -455,7 +462,8 @@ function resetReadButton() {
         btn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Đọc Lý Thuyết`;
     }
 }
-// Biến lưu trạng thái nối
+
+// Xử lý bài tập Nối Cặp (Matching)
 let selectedLeft = null;
 let selectedRight = null;
 
@@ -472,16 +480,13 @@ function selectMatch(btn, type, val, qIdx) {
         selectedRight = { btn: btn, val: val };
     }
 
-    // Khi chọn đủ 2 vế bên trái và bên phải
     if (selectedLeft && selectedRight) {
         const currentChallenge = topic1Lessons[currentLessonIdx].challenge.questions[qIdx];
-        // Tìm cặp đúng
         const isPairCorrect = currentChallenge.pairs.some(
             p => p.left === selectedLeft.val && p.right === selectedRight.val
         );
 
         if (isPairCorrect) {
-            // Đánh dấu nối đúng
             selectedLeft.btn.classList.remove('selected');
             selectedRight.btn.classList.remove('selected');
             selectedLeft.btn.classList.add('matched');
@@ -495,14 +500,12 @@ function selectMatch(btn, type, val, qIdx) {
             selectedLeft = null;
             selectedRight = null;
 
-            // Kiểm tra xem đã hoàn thành hết các cặp chưa
             const remaining = parent.querySelectorAll('.match-btn:not(.matched)').length;
             if (remaining === 0) {
-                checkAnswer(true); // Hoàn thành toàn bộ bài nối
+                checkAnswer(true);
             }
         } else {
-            // Chọn sai
-            alert("❌ Cặp này chưa đúng rồi, bé chọn lại nhé!");
+            showCustomModal("❌", "Cặp này chưa đúng rồi,<br>bé chọn lại nhé! 💪", "error");
             selectedLeft.btn.classList.remove('selected');
             selectedRight.btn.classList.remove('selected');
             selectedLeft = null;
