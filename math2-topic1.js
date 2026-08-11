@@ -28,12 +28,12 @@ const topic1Lessons = [
                 {
                     question: "Chú thỏ mang bảng '7 chục và 7 đơn vị' nối với củ cà rốt nào?",
                     options: ["🥕 70", "🥕 7", "🥕 77", "🥕 17"],
-                    correct: 2 // Đã sửa: 77 là vị trí chỉ số 2
+                    correct: 3 // Đã sửa: 77 là vị trí chỉ số 2
                 },
                 {
                     question: "Chú thỏ mang bảng '6 chục và 2 đơn vị' nối với củ cà rốt nào?",
                     options: ["🥕 66", "🥕 60", "🥕 6", "🥕 62"],
-                    correct: 3 // Đã sửa: 62 là vị trí chỉ số 3
+                    correct: 4 // Đã sửa: 62 là vị trí chỉ số 3
                 }
             ]
         },
