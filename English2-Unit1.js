@@ -1,4 +1,4 @@
-// Dữ liệu Từ vựng & Bài tập Unit 1
+// Dữ liệu Bài tập Unit 1
 const unit1Data = {
     title: "Unit 1: In the school playground",
     vocab: [
@@ -10,20 +10,24 @@ const unit1Data = {
     practice: [
         {
             type: "1. Listen and chant 🎵",
-            text: "B, b, ball. A ball, a ball. B, b, a ball.<br>B, b, book. A book, a book. B, b, a book.<br>B, b, bike. A bike, a bike. B, b, a bike.",
-            audioText: "B, b, ball. A ball, a ball. B, b, a ball. B, b, book. A book, a book. B, b, a book. B, b, bike. A bike, a bike. B, b, a bike."
+            text: "b, b, ball. A ball, a ball. b, b, a ball.<br>b, b, book. A book, a book. b, b, a book.<br>b, b, bike. A bike, a bike. b, b, a bike.",
+            // Viết chữ thường 'b' để máy phát âm đúng sound /b/ chứ không đọc chữ cái 'bee'
+            audioText: "b, b, ball. A ball, a ball. b, b, a ball. b, b, book. A book, a book. b, b, a book. b, b, bike. A bike, a bike. b, b, a bike."
         },
         {
             type: "2. Listen and tick ✏️",
-            text: "Nghe và chọn bức tranh đúng cho từ 'a bike':",
+            text: "Bấm nút nghe bài đọc, sau đó chọn bức tranh đúng:",
+            audioText: "a bike", // Nội dung âm thanh bài nghe
             options: ["a) 🚲 Xe đạp (a bike)", "b) 📖 Quyển sách (a book)"],
             correct: 0
         },
         {
             type: "3. Listen and repeat / Let's talk 💬",
-            text: "Luyện nói mẫu câu chào hỏi:",
-            options: ["Hi, I'm Bill.", "Bye, Bill."],
-            correct: 0
+            text: "Bấm nút nghe từng mẫu câu và đọc theo:",
+            dialogues: [
+                { text: "Hi, I'm Bill.", audio: "Hi, I'm Bill." },
+                { text: "Bye, Bill.", audio: "Bye, Bill." }
+            ]
         }
     ]
 };
@@ -94,33 +98,62 @@ function speakEnglish(text) {
     window.speechSynthesis.speak(utterance);
 }
 
-// 2. Tab Luyện Tập
+// Render Tab Luyện Tập
 function renderPracticeTab() {
     const container = document.getElementById("practice-container");
     container.innerHTML = unit1Data.practice.map((item, idx) => {
-        if (item.audioText) {
+        // 1. Phần Listen and chant
+        if (idx === 0) {
             return `
                 <div style="background:#f8fafc; border:2px solid #a29bfe; border-radius:18px; padding:16px; margin-bottom:15px;">
                     <div style="font-weight:900; color:#6c5ce7; font-size:1.1rem; margin-bottom:8px;">${item.type}</div>
                     <p style="font-size:1.05rem; font-weight:700; line-height:1.8; color:#2d3436;">${item.text}</p>
-                    <button onclick="speakEnglish('${item.audioText}')" style="background:#00b894; color:white; border:none; padding:8px 16px; border-radius:14px; font-weight:800; cursor:pointer; margin-top:10px;">
+                    <button onclick="speakEnglish('${item.audioText}')" style="background:#00b894; color:white; border:none; padding:8px 18px; border-radius:14px; font-weight:800; cursor:pointer; margin-top:10px; box-shadow:0 3px 0 #008f68;">
                         <i class="fa-solid fa-volume-high"></i> Nghe Chant
                     </button>
                 </div>
             `;
         }
 
-        return `
-            <div style="background:#f8fafc; border:2px solid #a29bfe; border-radius:18px; padding:16px; margin-bottom:15px;">
-                <div style="font-weight:900; color:#6c5ce7; font-size:1.1rem; margin-bottom:8px;">${item.type}</div>
-                <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:10px;">${item.text}</p>
-                <div>
-                    ${item.options.map((opt, optIdx) => `
-                        <button class="option-btn" onclick="checkAnswer(${optIdx === item.correct})">${opt}</button>
-                    `).join('')}
+        // 2. Phần Listen and tick (Thêm nút Nghe bài đọc)
+        if (idx === 1) {
+            return `
+                <div style="background:#f8fafc; border:2px solid #a29bfe; border-radius:18px; padding:16px; margin-bottom:15px;">
+                    <div style="font-weight:900; color:#6c5ce7; font-size:1.1rem; margin-bottom:8px;">${item.type}</div>
+                    <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:10px;">${item.text}</p>
+                    
+                    <button onclick="speakEnglish('${item.audioText}')" style="background:#ff7675; color:white; border:none; padding:8px 18px; border-radius:14px; font-weight:800; cursor:pointer; margin-bottom:12px; box-shadow:0 3px 0 #d63031;">
+                        <i class="fa-solid fa-volume-high"></i> 🎧 Nghe bài đọc (Audio)
+                    </button>
+
+                    <div>
+                        ${item.options.map((opt, optIdx) => `
+                            <button class="option-btn" onclick="checkAnswer(${optIdx === item.correct})">${opt}</button>
+                        `).join('')}
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
+
+        // 3. Phần Listen and repeat / Let's talk (Thêm nút Nghe cho từng mẫu câu)
+        if (idx === 2) {
+            return `
+                <div style="background:#f8fafc; border:2px solid #a29bfe; border-radius:18px; padding:16px; margin-bottom:15px;">
+                    <div style="font-weight:900; color:#6c5ce7; font-size:1.1rem; margin-bottom:8px;">${item.type}</div>
+                    <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:12px;">${item.text}</p>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        ${item.dialogues.map(d => `
+                            <div style="background:white; border:2px solid #74b9ff; border-radius:16px; padding:10px 16px; display:flex; align-items:center; gap:10px; box-shadow:0 3px 0 #74b9ff;">
+                                <span style="font-weight:900; font-size:1.1rem; color:#2d3436;">${d.text}</span>
+                                <button onclick="speakEnglish('${d.audio}')" style="background:#74b9ff; color:white; border:none; padding:6px 12px; border-radius:12px; font-weight:800; cursor:pointer;">
+                                    <i class="fa-solid fa-volume-high"></i> Nghe
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
     }).join('');
 }
 
