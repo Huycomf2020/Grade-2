@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiếng Anh Lớp 2 - Global Success</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-page: #f0fdf4;
+            --main-border: #86efac;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --primary-orange: #ff7675;
+            --primary-blue: #74b9ff;
+            --primary-purple: #a29bfe;
+            --primary-green: #00b894;
+            --primary-yellow: #ffeaa7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 950px;
+            background: #fffef0;
+            border: 8px solid var(--main-border);
+            border-radius: 36px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Top Header */
+        .header-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #2d3436;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-grade {
+            background: #ff7675;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 4px 0 #d63031;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Student Profile Card */
+        .profile-card {
+            background: #ffffff;
+            border: 3px solid #6c5ce7;
+            border-radius: 24px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 0 #a29bfe;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid #6c5ce7;
+            object-fit: cover;
+        }
+
+        .user-details h3 { font-size: 1.1rem; color: #2d3436; font-weight: 800; }
+        .user-details p { font-size: 0.85rem; color: #636e72; font-weight: 700; }
+
+        .score-badge {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 900;
+            color: #d63031;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 0 #fdcb6e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Dynamic Mode Navigation Tabs */
+        .nav-modes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            border: none;
+            padding: 12px;
+            border-radius: 18px;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .mode-play { background: #ff7675; box-shadow: 0 4px 0 #d63031; }
+        .mode-learn { background: #74b9ff; box-shadow: 0 4px 0 #0984e3; }
+        .mode-practice { background: #a29bfe; box-shadow: 0 4px 0 #6c5ce7; }
+        .mode-challenge { background: #00b894; box-shadow: 0 4px 0 #008f68; }
+
+        .mode-btn:hover {
+            transform: scale(1.03);
+        }
+
+        /* Section Title Bar */
+        .section-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #2d3436;
+            margin: 24px 0 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Grid 16 Units */
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 650px) {
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-modes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Card Unit Styles */
+        .unit-card {
+            background: #ffffff;
+            border: 4px solid #86efac;
+            border-radius: 24px;
+            padding: 18px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 0 #86efac;
+            cursor: pointer;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 0 #4ade80;
+        }
+
+        .unit-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .unit-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #2d3436;
+            margin-bottom: 4px;
+        }
+
+        .unit-subtitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #636e72;
+        }
+
+        /* Thẻ đổi màu xen kẽ cho sinh động */
+        .unit-card:nth-child(4n+1) { border-color: #74b9ff; box-shadow: 0 4px 0 #74b9ff; }
+        .unit-card:nth-child(4n+2) { border-color: #ffeaa7; box-shadow: 0 4px 0 #fdcb6e; }
+        .unit-card:nth-child(4n+3) { border-color: #86efac; box-shadow: 0 4px 0 #55efc4; }
+        .unit-card:nth-child(4n+4) { border-color: #ff7675; box-shadow: 0 4px 0 #ff7675; }
+
+        .unit-card:nth-child(4n+1):hover { box-shadow: 0 8px 0 #0984e3; }
+        .unit-card:nth-child(4n+2):hover { box-shadow: 0 8px 0 #e1b12c; }
+        .unit-card:nth-child(4n+3):hover { box-shadow: 0 8px 0 #00b894; }
+        .unit-card:nth-child(4n+4):hover { box-shadow: 0 8px 0 #d63031; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Top Header -->
+        <div class="header-title">
+            <a href="index.html" class="btn-grade">
+                <i class="fa-solid fa-house"></i> Grade-2
+            </a>
+            <span>🔤 TIẾNG ANH 2 ✏️</span>
+        </div>
+
+        <!-- Student Profile Card -->
+        <div class="profile-card">
+            <div class="user-info">
+                <img src="binhan.png" alt="Bình An" class="avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=BinhAn'">
+                <div class="user-details">
+                    <h3>Bé Phan Ngọc Bình An</h3>
+                    <p>Lớp 2A • Tiếng Anh 2 Global Success</p>
+                </div>
+            </div>
+            <div class="score-badge">
+                <i class="fa-solid fa-star"></i> <span id="user-score">150</span> điểm
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-modes">
+            <a href="slap-the-board.html" class="mode-btn mode-play">
+                <i class="fa-solid fa-gamepad"></i> CHƠI
+            </a>
+            <a href="English2-Unit1.html" class="mode-btn mode-learn">
+                <i class="fa-solid fa-book-open"></i> HỌC
+            </a>
+            <a href="English2-Unit1.html" class="mode-btn mode-practice">
+                <i class="fa-solid fa-pen-to-square"></i> ÔN TẬP
+            </a>
+            <a href="English2-Unit1.html" class="mode-btn mode-challenge">
+                <i class="fa-solid fa-trophy"></i> THỬ THÁCH
+            </a>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-title">
+            <span>🌳 ENGLISH 2 - 16 UNITS GLOBAL SUCCESS 🌳</span>
+        </div>
+
+        <!-- Grid 16 Units -->
+        <div class="units-grid">
+            <a href="English2-Unit1.html" class="unit-card">
+                <div class="unit-icon">🛝</div>
+                <div class="unit-title">Unit 1: In the school playground</div>
+                <div class="unit-subtitle">Letter Bb • ball, bike, book</div>
+            </a>
+
+            <a href="English2-Unit2.html" class="unit-card">
+                <div class="unit-icon">🍽️</div>
+                <div class="unit-title">Unit 2: In the dining room</div>
+                <div class="unit-subtitle">Letter Cc • cake, car, cat, cup</div>
+            </a>
+
+            <a href="English2-Unit3.html" class="unit-card">
+                <div class="unit-icon">🛒</div>
+                <div class="unit-title">Unit 3: At the street market</div>
+                <div class="unit-subtitle">Letter Aa • apple, bag, can, hat</div>
+            </a>
+
+            <a href="English2-Unit4.html" class="unit-card">
+                <div class="unit-icon">🛏️</div>
+                <div class="unit-title">Unit 4: In the bedroom</div>
+                <div class="unit-subtitle">Letter Dd • desk, dog, door, duck</div>
+            </a>
+
+            <a href="English2-Unit5.html" class="unit-card">
+                <div class="unit-icon">🍟</div>
+                <div class="unit-title">Unit 5: At the fish and chip shop</div>
+                <div class="unit-subtitle">Letter Ii • chicken, chips, fish, milk</div>
+            </a>
+
+            <a href="English2-Unit6.html" class="unit-card">
+                <div class="unit-icon">🏫</div>
+                <div class="unit-title">Unit 6: In the classroom</div>
+                <div class="unit-subtitle">Letter Ee • bell, pen, pencil, red</div>
+            </a>
+
+            <a href="English2-Unit7.html" class="unit-card">
+                <div class="unit-icon">🏡</div>
+                <div class="unit-title">Unit 7: In the garden</div>
+                <div class="unit-subtitle">Letter Gg • garden, gate, girl, goat</div>
+            </a>
+
+            <a href="English2-Unit8.html" class="unit-card">
+                <div class="unit-icon">🛝</div>
+                <div class="unit-title">Unit 8: In the park</div>
+                <div class="unit-subtitle">Letter Hh • hair, hand, head, horse</div>
+            </a>
+
+            <a href="English2-Unit9.html" class="unit-card">
+                <div class="unit-icon">🛍️</div>
+                <div class="unit-title">Unit 9: In the shop</div>
+                <div class="unit-subtitle">Letter Oo • clocks, locks, mops, pots</div>
+            </a>
+
+            <a href="English2-Unit10.html" class="unit-card">
+                <div class="unit-icon">🦁</div>
+                <div class="unit-title">Unit 10: At the zoo</div>
+                <div class="unit-subtitle">Letter Mm • mango, monkey, mother, mouse</div>
+            </a>
+
+            <a href="English2-Unit11.html" class="unit-card">
+                <div class="unit-icon">🚌</div>
+                <div class="unit-title">Unit 11: At the bus stop</div>
+                <div class="unit-subtitle">Letter Uu • bus, run, sun, truck</div>
+            </a>
+
+            <a href="English2-Unit12.html" class="unit-card">
+                <div class="unit-icon">🏞️</div>
+                <div class="unit-title">Unit 12: At the lake</div>
+                <div class="unit-subtitle">Letter Ll • lake, leaf, lemons</div>
+            </a>
+
+            <a href="English2-Unit13.html" class="unit-card">
+                <div class="unit-icon">🥪</div>
+                <div class="unit-title">Unit 13: In the school canteen</div>
+                <div class="unit-subtitle">Letter Nn • bananas, noodles, nuts</div>
+            </a>
+
+            <a href="English2-Unit14.html" class="unit-card">
+                <div class="unit-icon">🧸</div>
+                <div class="unit-title">Unit 14: In the toy shop</div>
+                <div class="unit-subtitle">Letter Tt • teddy bear, tiger, top, turtle</div>
+            </a>
+
+            <a href="English2-Unit15.html" class="unit-card">
+                <div class="unit-icon">⚽</div>
+                <div class="unit-title">Unit 15: At the football match</div>
+                <div class="unit-subtitle">Letter Ff • face, father, foot, football</div>
+            </a>
+
+            <a href="English2-Unit16.html" class="unit-card">
+                <div class="unit-icon">🏠</div>
+                <div class="unit-title">Unit 16: At home</div>
+                <div class="unit-subtitle">Letter Ww • wash, water, window</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
