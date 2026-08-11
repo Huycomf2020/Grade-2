@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiếng Anh Lớp 2 - Unit 1: In the school playground</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-page: #f0fdf4;
+            --main-border: #86efac;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --primary-orange: #ff7675;
+            --primary-blue: #74b9ff;
+            --primary-purple: #a29bfe;
+            --primary-green: #00b894;
+            --primary-yellow: #ffeaa7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 950px;
+            background: #fffef0;
+            border: 8px solid var(--main-border);
+            border-radius: 36px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* Top Header */
+        .header-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #2d3436;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-grade {
+            background: #ff7675;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 4px 0 #d63031;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: #ffffff;
+            border: 3px solid #6c5ce7;
+            border-radius: 24px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 0 #a29bfe;
+        }
+
+        .user-info { display: flex; align-items: center; gap: 15px; }
+        .avatar { width: 55px; height: 55px; border-radius: 50%; border: 3px solid #6c5ce7; object-fit: cover; }
+        .user-details h3 { font-size: 1.1rem; color: #2d3436; font-weight: 800; }
+        .user-details p { font-size: 0.85rem; color: #636e72; font-weight: 700; }
+
+        .score-badge {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 900;
+            color: #d63031;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 0 #fdcb6e;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* Audio Background Control Button */
+        .bg-music-btn {
+            background: #fdcb6e;
+            border: 2px solid #e1b12c;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-weight: 800;
+            color: #d63031;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+            box-shadow: 0 3px 0 #e1b12c;
+        }
+
+        /* Dynamic Nav Modes */
+        .nav-modes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            border: none;
+            padding: 12px;
+            border-radius: 18px;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .mode-btn.active { opacity: 1; transform: scale(1.03); }
+        .mode-learn { background: #74b9ff; box-shadow: 0 4px 0 #0984e3; }
+        .mode-practice { background: #a29bfe; box-shadow: 0 4px 0 #6c5ce7; }
+        .mode-play { background: #ff7675; box-shadow: 0 4px 0 #d63031; }
+        .mode-challenge { background: #00b894; box-shadow: 0 4px 0 #008f68; }
+
+        /* Content Panel */
+        .content-panel {
+            background: white;
+            border: 3px solid #74b9ff;
+            border-radius: 24px;
+            padding: 24px;
+            min-height: 380px;
+            box-shadow: 0 5px 0 #0984e3;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Vocabulary Grid Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .vocab-card {
+            background: #f8fafc;
+            border: 3px solid #74b9ff;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0984e3;
+            transition: transform 0.2s;
+        }
+
+        .vocab-card:hover { transform: translateY(-3px); }
+        .vocab-card img { width: 90px; height: 90px; object-fit: contain; margin-bottom: 8px; }
+        .vocab-word { font-size: 1.3rem; font-weight: 900; color: #2d3436; }
+        .vocab-meaning { font-size: 0.95rem; font-weight: 700; color: #636e72; }
+
+        .phonics-guide {
+            background: #fff9db;
+            border: 3px dashed #fdcb6e;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* Slap the Board Game UI */
+        .slap-board-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .slap-card {
+            background: #fff9db;
+            border: 4px solid #fdcb6e;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #d63031;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #e1b12c;
+            position: relative;
+        }
+
+        .slap-card:active { transform: scale(0.95); }
+        .slap-card.correct { background: #55efc4; border-color: #00b894; color: #006266; }
+        .slap-card.wrong { background: #ff7675; border-color: #d63031; color: white; }
+
+        /* Karaoke Modal Box */
+        .karaoke-box {
+            background: #fffef0;
+            border: 4px solid #00b894;
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 16px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .btn-mic {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #8e44ad;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+
+        /* Option Buttons for Practice */
+        .option-btn {
+            background: white;
+            border: 2px solid #74b9ff;
+            padding: 10px 20px;
+            border-radius: 14px;
+            margin: 5px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #74b9ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nhạc nền om.mp3 -->
+    <audio id="bg-music" src="om.mp3" loop></audio>
+
+    <div class="app-container">
+        <!-- Top Header -->
+        <div class="header-title">
+            <a href="english2.html" class="btn-grade">
+                <i class="fa-solid fa-house"></i> English 2
+            </a>
+            <span>🔤 UNIT 1: IN THE SCHOOL PLAYGROUND 🛝</span>
+        </div>
+
+        <!-- Student Profile Card -->
+        <div class="profile-card">
+            <div class="user-info">
+                <img src="binhan.png" alt="Bình An" class="avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=BinhAn'">
+                <div class="user-details">
+                    <h3>Bé Phan Ngọc Bình An</h3>
+                    <p>Lớp 2A • Tiếng Anh 2 Global Success</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="bg-music-btn" onclick="toggleBgMusic()">
+                    <i class="fa-solid fa-music" id="music-icon"></i> <span id="music-text">Bật Nhạc</span>
+                </button>
+                <div class="score-badge">
+                    <i class="fa-solid fa-star"></i> <span id="user-score">150</span> điểm
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Nav Tabs -->
+        <div class="nav-modes">
+            <button class="mode-btn mode-learn active" onclick="switchTab('learn')">
+                <i class="fa-solid fa-book-open"></i> HỌC
+            </button>
+            <button class="mode-btn mode-practice" onclick="switchTab('practice')">
+                <i class="fa-solid fa-pen-to-square"></i> LUYỆN TẬP
+            </button>
+            <button class="mode-btn mode-play" onclick="switchTab('play')">
+                <i class="fa-solid fa-gamepad"></i> CHƠI
+            </button>
+            <button class="mode-btn mode-challenge" onclick="switchTab('challenge')">
+                <i class="fa-solid fa-trophy"></i> THỬ THÁCH
+            </button>
+        </div>
+
+        <!-- Content Panel -->
+        <div class="content-panel">
+            <!-- TAB HỌC -->
+            <div id="tab-learn" class="tab-content active">
+                <div class="phonics-guide">
+                    📢 <b>Hướng dẫn phát âm Letter Bb - Sound /b/:</b><br>
+                    Bé hãy mím nhẹ hai môi lại với nhau, sau đó bật nhẹ hơi ra ngoài và cất tiếng nói: <b>/b/... /b/!</b><br>
+                    <i>(Bấm vào từng thẻ dưới đây để nghe phát âm chuẩn nhé!)</i>
+                </div>
+                <div class="vocab-grid" id="vocab-grid-container"></div>
+            </div>
+
+            <!-- TAB LUYỆN TẬP -->
+            <div id="tab-practice" class="tab-content">
+                <div id="practice-container"></div>
+            </div>
+
+            <!-- TAB CHƠI: SLAP THE BOARD -->
+            <div id="tab-play" class="tab-content">
+                <div id="slap-board-game"></div>
+            </div>
+
+            <!-- TAB THỬ THÁCH: KARAOKE CHANT -->
+            <div id="tab-challenge" class="tab-content">
+                <div class="karaoke-box">
+                    <h3 style="color:#00b894; margin-bottom:12px; font-weight:900;">
+                        🎤 THỬ THÁCH: HÁT VÀ CHANT THEO PHONICS LETTER B
+                    </h3>
+                    <div class="video-container">
+                        <iframe id="youtube-player" src="https://www.youtube.com/embed/LqfA0N_PfeM?enablejsapi=1" allowfullscreen></iframe>
+                    </div>
+                    <button class="btn-mic" onclick="toggleMicrophone()">
+                        <i class="fa-solid fa-microphone" id="mic-icon"></i> <span id="mic-text">BẬT MICRO & CHANT THEO BEAT</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Pop-up Modal -->
+    <div id="custom-modal" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); justify-content:center; align-items:center; z-index:9999;">
+        <div class="modal-content" id="modal-box" style="background:#fffef0; border:6px solid #ffeaa7; border-radius:28px; padding:25px; text-align:center; max-width:400px; width:90%;">
+            <div id="modal-icon" style="font-size:3.5rem; margin-bottom:10px;"></div>
+            <div id="modal-message" style="font-size:1.3rem; font-weight:900; margin-bottom:20px;"></div>
+            <button onclick="closeModal()" style="background:#ff7675; color:white; border:none; padding:10px 28px; font-size:1.1rem; font-weight:800; border-radius:18px; cursor:pointer;">Đồng ý 🌟</button>
+        </div>
+    </div>
+
+    <script src="English2-Unit1.js"></script>
+</body>
+</html>
