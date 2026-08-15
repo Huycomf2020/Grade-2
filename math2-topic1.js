@@ -4,7 +4,7 @@ const topic1Lessons = [
         id: 1,
         title: "Bài 1: Ôn tập các số đến 100",
         theory: "Cấu tạo số có 2 chữ số gồm hàng chục ở bên trái và hàng đơn vị ở bên phải. Ví dụ, phân tích cấu tạo số '87' thì 87 = 80 + 7, gồm 8 chục và 7 đơn vị. Tương tự vậy, số '34' là 3 chục và 4 đơn vị.",
-        image: "https://i.ibb.co/39hJrWTB/chuc-donvi.png",
+        image: "images/chuc-donvi.png",
         practice: [
             { type: "Dạng 1: Hoàn thành bảng", text: "Số 51 gồm mấy chục và mấy đơn vị?", options: ["5 chục và 1 đơn vị", "1 chục và 5 đơn vị"], correct: 0 },
             { type: "Dạng 2: Sắp xếp dãy số", text: "Sắp xếp dãy số sau theo thứ tự từ bé đến lớn: 58, 29, 89, 49", options: ["29, 49, 58, 89", "89, 58, 49, 29"], correct: 0 },
@@ -82,7 +82,7 @@ const topic1Lessons = [
         id: 3,
         title: "Bài 3: Các thành phần của phép cộng, phép trừ",
         theory: "Trong phép cộng: Số hạng cộng Số hạng bằng Tổng. Trong phép trừ: Số bị trừ trừ Số trừ bằng Hiệu.",
-        image: "https://i.ibb.co/3q0P7Tg/tong-hieu.png",
+        image: "images/tong-hieu.png",
         practice: [
             { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["77", "75"], correct: 0 },
             { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 40 và 30. Tổng là bao nhiêu?", options: ["60", "10", "45", "70"], correct: 3 },
@@ -102,7 +102,7 @@ const topic1Lessons = [
         ],
         game: {
             title: "⭐ Trò chơi: Tìm cặp sao sáng",
-            image: "https://i.ibb.co/cKWD5wQH/tim-sao.png",
+            image: "images/tim-sao.png",
             question: "Đếm có 11 sao đỏ và 8 sao vàng. Tổng số sao là bao nhiêu?",
             options: ["20 ngôi sao", "19 ngôi sao", "3 ngôi sao", "29 ngôi sao"],
             correct: 1
@@ -112,19 +112,19 @@ const topic1Lessons = [
             questions: [
                 {
                     question: "Đoàn tàu A có các toa 50, 60, 70, 40. Sắp xếp các toa từ lớn đến bé:",
-                    image: "https://i.ibb.co/spShNSJx/tau-a.png",
+                    image: "images/tau-a.png",
                     options: ["70, 60, 50, 40", "40, 50, 60, 70"],
                     correct: 0
                 },
                 {
                     question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số lớn nhất:",
-                    image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+                    image: "images/tau-b.png",
                     options: ["1", "2", "4", "5", "11"],
                     correct: 4
                 },
                 {
                     question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số bé nhất:",
-                    image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+                    image: "images/tau-b.png",
                     options: ["0", "1", "2", "3", "4"],
                     correct: 2
                 }
