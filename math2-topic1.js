@@ -210,7 +210,7 @@ let synth = window.speechSynthesis;
 let currentUtterance = null;
 let isSpeaking = false;
 let femaleVoice = null;
-let userScore = 0;
+let userScore = 150;
 
 window.onload = function() {
     loadVoice();
