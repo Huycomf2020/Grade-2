@@ -28,12 +28,12 @@ const topic1Lessons = [
                 {
                     question: "Chú thỏ mang bảng '7 chục và 7 đơn vị' nối với củ cà rốt nào?",
                     options: ["🥕 70", "🥕 7", "🥕 77", "🥕 17"],
-                    correct: 2 // Đã sửa: 77 là vị trí chỉ số 2
+                    correct: 2
                 },
                 {
                     question: "Chú thỏ mang bảng '6 chục và 2 đơn vị' nối với củ cà rốt nào?",
                     options: ["🥕 66", "🥕 60", "🥕 6", "🥕 62"],
-                    correct: 3 // Đã sửa: 62 là vị trí chỉ số 3
+                    correct: 3
                 }
             ]
         },
@@ -52,7 +52,7 @@ const topic1Lessons = [
                 }
             ]
         }
-    }, // Đã sửa: Thêm ngoặc đóng Bài 1 và dấu phẩy
+    },
     {
         id: 2,
         title: "Bài 2: Tia số. Số liền trước, số liền sau",
@@ -82,22 +82,21 @@ const topic1Lessons = [
         id: 3,
         title: "Bài 3: Các thành phần của phép cộng, phép trừ",
         theory: "Trong phép cộng: Số hạng cộng Số hạng bằng Tổng. Trong phép trừ: Số bị trừ trừ Số trừ bằng Hiệu.",
-        image: "https://i.ibb.co/MxwKFhF9/hang-tong.png",
-        image: "https://i.ibb.co/v6Qs8HhL/hieu-tru.png",
+        image: "https://i.ibb.co/3q0P7Tg/tong-hieu.png",
         practice: [
             { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["77", "75"], correct: 0 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 40 và 30. Tổng là bao nhiêu?", options: ["60", "10", “45”, “70], correct: 3 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 25 và 61. Tổng là bao nhiêu?", options: ["34", "86", “46”, “70], correct: 1 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 80 và 7. Tổng là bao nhiêu?", options: ["67", "73", “87”, “97], correct: 2 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["60", "10", “45”, “70], correct: 0 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 12 và 24. Tổng là bao nhiêu?", options: ["36", "10", “46”, “70], correct: 0 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 14 và 23. Tổng là bao nhiêu?", options: ["60", "27", “45”, “37], correct: 3 },
-            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 15 và 20. Tổng là bao nhiêu?", options: ["25", "35", “45”, “15], correct: 1 },
-            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 42 và số trừ là 35. Hiệu là bao nhiêu?", options: ["7", "77", “45”, “17], correct: 0 },
-            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 10 và số trừ là 5. Hiệu là bao nhiêu?", options: ["7", "15", “5”, “17], correct: 2 },
-            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 97 và số trừ là 53. Hiệu là bao nhiêu?", options: ["34", "45", “44”, “54], correct: 2 },
-            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 86 và số trừ là 32. Hiệu là bao nhiêu?", options: ["44", "34", “45”, “54], correct: 3 },
-            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 47 và số trừ là 20. Hiệu là bao nhiêu?", options: ["27", "77", “45”, “17], correct: 0 },            
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 40 và 30. Tổng là bao nhiêu?", options: ["60", "10", "45", "70"], correct: 3 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 25 và 61. Tổng là bao nhiêu?", options: ["34", "86", "46", "70"], correct: 1 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 80 và 7. Tổng là bao nhiêu?", options: ["67", "73", "87", "97"], correct: 2 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["60", "10", "45", "70"], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 12 và 24. Tổng là bao nhiêu?", options: ["36", "10", "46", "70"], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 14 và 23. Tổng là bao nhiêu?", options: ["60", "27", "45", "37"], correct: 3 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 15 và 20. Tổng là bao nhiêu?", options: ["25", "35", "45", "15"], correct: 1 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 42 và số trừ là 35. Hiệu là bao nhiêu?", options: ["7", "77", "45", "17"], correct: 0 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 10 và số trừ là 5. Hiệu là bao nhiêu?", options: ["7", "15", "5", "17"], correct: 2 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 97 và số trừ là 53. Hiệu là bao nhiêu?", options: ["34", "45", "44", "54"], correct: 2 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 86 và số trừ là 32. Hiệu là bao nhiêu?", options: ["44", "34", "45", "54"], correct: 3 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 47 và số trừ là 20. Hiệu là bao nhiêu?", options: ["27", "77", "45", "17"], correct: 0 },            
             { type: "Dạng 2: Đặt tính rồi tính", text: "Số bị trừ là 68, số trừ là 25. Hiệu là bao nhiêu?", options: ["43", "33"], correct: 0 },
             { type: "Dạng 3: Lập phép tính", text: "Từ các thẻ 21, 36, 57 ta lập được phép cộng đúng nào?", options: ["21 + 36 = 57", "21 + 57 = 36"], correct: 0 }
         ],
@@ -112,24 +111,25 @@ const topic1Lessons = [
             title: "🚂 Thử thách: Ghép toa tàu mừng xuân",
             questions: [
                 {
-	question: "Đoàn tàu A có các toa 50, 60, 70, 40. Sắp xếp các toa từ lớn đến bé:",
-	image: "https://i.ibb.co/spShNSJx/tau-a.png",
-            options: ["70, 60, 50, 40", "40, 50, 60, 70"],
-            correct: 0
-        	},
-	{
-	question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số lớn nhất:",
-	image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
-            options: ["1”, “2”, “4”, “5”, “11"],
-            correct: 4
-        	},
-	{
-	question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số bé nhất:",
-	image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
-            options: ["0”, “1”, “2”, “3”, “4"],
-            correct: 2
-        	}
+                    question: "Đoàn tàu A có các toa 50, 60, 70, 40. Sắp xếp các toa từ lớn đến bé:",
+                    image: "https://i.ibb.co/spShNSJx/tau-a.png",
+                    options: ["70, 60, 50, 40", "40, 50, 60, 70"],
+                    correct: 0
+                },
+                {
+                    question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số lớn nhất:",
+                    image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+                    options: ["1", "2", "4", "5", "11"],
+                    correct: 4
+                },
+                {
+                    question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số bé nhất:",
+                    image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+                    options: ["0", "1", "2", "3", "4"],
+                    correct: 2
+                }
             ]
+        }
     },
     {
         id: 4,
@@ -317,7 +317,7 @@ function loadLessonContent() {
         `;
     }).join('');
     
-    // 3. Tab Chơi (Tự động thích ứng cả 1 câu hỏi hoặc nhiều câu hỏi)
+    // 3. Tab Chơi
     const playBox = document.getElementById("play-content");
     const gameList = lesson.game.questions || [lesson.game];
 
@@ -348,7 +348,7 @@ function loadLessonContent() {
         </div>
     `;
 
-    // 4. Tab Thử thách (Hỗ trợ cả Trắc nghiệm và Nối cặp Matching)
+    // 4. Tab Thử thách
     const challengeBox = document.getElementById("challenge-content");
     const challengeList = lesson.challenge.questions || [lesson.challenge];
 
