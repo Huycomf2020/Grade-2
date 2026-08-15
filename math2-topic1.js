@@ -210,7 +210,7 @@ let synth = window.speechSynthesis;
 let currentUtterance = null;
 let isSpeaking = false;
 let femaleVoice = null;
-let userScore = 150;
+let userScore = 0;
 
 window.onload = function() {
     loadVoice();
@@ -402,18 +402,30 @@ function loadLessonContent() {
     }
 }
 
-// Kiểm tra câu trả lời với Custom Pop-up
+// 1. Tạo sẵn 2 file âm thanh từ folder audio
+const soundCorrect = new Audio('audio/correct.mp3');
+const soundIncorrect = new Audio('audio/incorrect.mp3');
+
+// 2. Kiểm tra câu trả lời với Custom Pop-up & Âm thanh
 function checkAnswer(isCorrect) {
     if (isCorrect) {
         userScore += 10;
         document.getElementById("user-score").innerText = userScore;
         
+        // 🔊 Phát nhạc ĐÚNG
+        soundCorrect.currentTime = 0;
+        soundCorrect.play().catch(e => console.log(e));
+
         showCustomModal(
             "🎉", 
             "Chính xác rồi!<br><span style='color: #e67e22;'>Bé giỏi quá (+10 điểm) ⭐</span>", 
             "success"
         );
     } else {
+        // 🔊 Phát nhạc SAI
+        soundIncorrect.currentTime = 0;
+        soundIncorrect.play().catch(e => console.log(e));
+
         showCustomModal(
             "❌", 
             "Chưa đúng rồi,<br>bé hãy thử lại nhé! 💪", 
@@ -517,30 +529,38 @@ function selectMatch(btn, type, val, qIdx) {
             p => p.left === selectedLeft.val && p.right === selectedRight.val
         );
 
-        if (isPairCorrect) {
-            selectedLeft.btn.classList.remove('selected');
-            selectedRight.btn.classList.remove('selected');
-            selectedLeft.btn.classList.add('matched');
-            selectedRight.btn.classList.add('matched');
-            selectedLeft.btn.disabled = true;
-            selectedRight.btn.disabled = true;
+       if (isPairCorrect) {
+        // 🔊 1. Bổ sung phát âm thanh ĐÚNG khi nối chuẩn 1 cặp
+        soundCorrect.currentTime = 0;
+        soundCorrect.play().catch(e => console.log(e));
 
-            userScore += 5;
-            document.getElementById("user-score").innerText = userScore;
-            
-            selectedLeft = null;
-            selectedRight = null;
+        selectedLeft.btn.classList.remove('selected');
+        selectedRight.btn.classList.remove('selected');
+        selectedLeft.btn.classList.add('matched');
+        selectedRight.btn.classList.add('matched');
+        selectedLeft.btn.disabled = true;
+        selectedRight.btn.disabled = true;
 
-            const remaining = parent.querySelectorAll('.match-btn:not(.matched)').length;
-            if (remaining === 0) {
-                checkAnswer(true);
-            }
-        } else {
-            showCustomModal("❌", "Cặp này chưa đúng rồi,<br>bé chọn lại nhé! 💪", "error");
-            selectedLeft.btn.classList.remove('selected');
-            selectedRight.btn.classList.remove('selected');
-            selectedLeft = null;
-            selectedRight = null;
+        userScore += 5;
+        document.getElementById("user-score").innerText = userScore;
+        
+        selectedLeft = null;
+        selectedRight = null;
+
+        const remaining = parent.querySelectorAll('.match-btn:not(.matched)').length;
+        if (remaining === 0) {
+            checkAnswer(true); // Khi hoàn thành hết các cặp sẽ tự động gọi tiếp pop-up + điểm tổng
+        }
+    } else {
+        // 🔊 2. Bổ sung phát âm thanh SAI khi nối nhầm cặp
+        soundIncorrect.currentTime = 0;
+        soundIncorrect.play().catch(e => console.log(e));
+
+        showCustomModal("❌", "Cặp này chưa đúng rồi,<br>bé chọn lại nhé! 💪", "error");
+        selectedLeft.btn.classList.remove('selected');
+        selectedRight.btn.classList.remove('selected');
+        selectedLeft = null;
+        selectedRight = null;
         }
     }
 }
