@@ -82,23 +82,54 @@ const topic1Lessons = [
         id: 3,
         title: "Bài 3: Các thành phần của phép cộng, phép trừ",
         theory: "Trong phép cộng: Số hạng cộng Số hạng bằng Tổng. Trong phép trừ: Số bị trừ trừ Số trừ bằng Hiệu.",
+        image: "https://i.ibb.co/MxwKFhF9/hang-tong.png",
+        image: "https://i.ibb.co/v6Qs8HhL/hieu-tru.png",
         practice: [
-            { type: "Dạng 1: Tìm Tổng hoặc Hiệu", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["77", "75"], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["77", "75"], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 40 và 30. Tổng là bao nhiêu?", options: ["60", "10", “45”, “70], correct: 3 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 25 và 61. Tổng là bao nhiêu?", options: ["34", "86", “46”, “70], correct: 1 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 80 và 7. Tổng là bao nhiêu?", options: ["67", "73", “87”, “97], correct: 2 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 42 và 35. Tổng là bao nhiêu?", options: ["60", "10", “45”, “70], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 12 và 24. Tổng là bao nhiêu?", options: ["36", "10", “46”, “70], correct: 0 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 14 và 23. Tổng là bao nhiêu?", options: ["60", "27", “45”, “37], correct: 3 },
+            { type: "Dạng 1: Tìm Tổng", text: "Biết các số hạng là 15 và 20. Tổng là bao nhiêu?", options: ["25", "35", “45”, “15], correct: 1 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 42 và số trừ là 35. Hiệu là bao nhiêu?", options: ["7", "77", “45”, “17], correct: 0 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 10 và số trừ là 5. Hiệu là bao nhiêu?", options: ["7", "15", “5”, “17], correct: 2 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 97 và số trừ là 53. Hiệu là bao nhiêu?", options: ["34", "45", “44”, “54], correct: 2 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 86 và số trừ là 32. Hiệu là bao nhiêu?", options: ["44", "34", “45”, “54], correct: 3 },
+            { type: "Dạng 1: Tìm Hiệu", text: "Biết các số bị trừ là 47 và số trừ là 20. Hiệu là bao nhiêu?", options: ["27", "77", “45”, “17], correct: 0 },            
             { type: "Dạng 2: Đặt tính rồi tính", text: "Số bị trừ là 68, số trừ là 25. Hiệu là bao nhiêu?", options: ["43", "33"], correct: 0 },
             { type: "Dạng 3: Lập phép tính", text: "Từ các thẻ 21, 36, 57 ta lập được phép cộng đúng nào?", options: ["21 + 36 = 57", "21 + 57 = 36"], correct: 0 }
         ],
         game: {
             title: "⭐ Trò chơi: Tìm cặp sao sáng",
-            question: "Đếm có 12 sao đỏ và 10 sao vàng. Tổng số sao là bao nhiêu?",
-            options: ["20 ngôi sao", "22 ngôi sao"],
+            image: "https://i.ibb.co/cKWD5wQH/tim-sao.png",
+            question: "Đếm có 11 sao đỏ và 8 sao vàng. Tổng số sao là bao nhiêu?",
+            options: ["20 ngôi sao", "19 ngôi sao", "3 ngôi sao", "29 ngôi sao"],
             correct: 1
         },
         challenge: {
             title: "🚂 Thử thách: Ghép toa tàu mừng xuân",
-            question: "Đoàn tàu A có các toa 50, 60, 70, 40. Sắp xếp các toa từ lớn đến bé:",
+            questions: [
+                {
+	question: "Đoàn tàu A có các toa 50, 60, 70, 40. Sắp xếp các toa từ lớn đến bé:",
+	image: "https://i.ibb.co/spShNSJx/tau-a.png",
             options: ["70, 60, 50, 40", "40, 50, 60, 70"],
             correct: 0
-        }
+        	},
+	{
+	question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số lớn nhất:",
+	image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+            options: ["1”, “2”, “4”, “5”, “11"],
+            correct: 4
+        	},
+	{
+	question: "Đoàn tàu B có các toa 30, 41, 35, 39. Tìm hiệu số bé nhất:",
+	image: "https://i.ibb.co/tp5NQ6f0/tau-b.png",
+            options: ["0”, “1”, “2”, “3”, “4"],
+            correct: 2
+        	}
+            ]
     },
     {
         id: 4,
