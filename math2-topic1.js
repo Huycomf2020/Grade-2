@@ -356,6 +356,13 @@ function loadLessonContent() {
         <div class="interactive-game" style="background:#e8f8f5; border-color:#00b894;">
             <div class="game-title" style="color:#00b894;">${lesson.challenge.title}</div>
             ${challengeList.map((q, qIdx) => {
+                // Tạo thẻ hiển thị hình ảnh nếu câu hỏi có chứa đường dẫn image
+                let imgHTML = q.image ? `
+                    <div style="text-align: center; margin: 10px 0;">
+                        <img src="${q.image}" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                    </div>
+                ` : '';
+
                 if (q.type === "matching") {
                     const leftItems = q.pairs.map(p => p.left);
                     const rightItems = [...q.pairs.map(p => p.right)].sort(() => Math.random() - 0.5);
@@ -365,6 +372,7 @@ function loadLessonContent() {
                             <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:12px;">
                                 ${challengeList.length > 1 ? `Câu ${qIdx + 1}: ` : ''}${q.question}
                             </p>
+                            ${imgHTML}
                             <div class="matching-container" id="matching-game-${qIdx}">
                                 <div class="matching-col">
                                     ${leftItems.map((item, idx) => `
@@ -386,6 +394,7 @@ function loadLessonContent() {
                         <p style="font-size:1.05rem; font-weight:800; color:#2d3436; margin-bottom:8px;">
                             ${challengeList.length > 1 ? `Câu ${qIdx + 1}: ` : ''}${q.question}
                         </p>
+                        ${imgHTML}
                         <div>
                             ${q.options.map((opt, optIdx) => `
                                 <button class="option-btn" onclick="checkAnswer(${optIdx === q.correct})">${opt}</button>
